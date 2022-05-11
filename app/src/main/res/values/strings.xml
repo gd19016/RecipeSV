@@ -2,7 +2,7 @@
     <string name="app_name">RecipeSV</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_title">Recipe SV</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -10,4 +10,25 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <!-- Títulos de acciones -->
+    <string name="update">Modificar</string>
+    <string name="delete">Borrar</string>
+    <string name="add">Agregar</string>
+
+    <!-- Nombres de módulos -->
+    <string name="gestionar_recetas">Gestionar recetas</string>
+
+    <!-- Etiquetas de campos -->
+    <string name="nombre_receta">Nombre</string>
+
+    <!-- Tips a mostrar en campos -->
+    <string name="ing_nombre_receta">Ingrese nombre de receta…</string>
+
+    <!-- Titulos botones -->
+    <string name="btn_guardar_receta">Guardar Receta</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="id_receta">ID</string>
+    <string name="ing_id_receta">Ingrese el ID...</string>
 </resources>
