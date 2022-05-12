@@ -27,8 +27,23 @@
 
     <!-- Titulos botones -->
     <string name="btn_guardar_receta">Guardar Receta</string>
+
     <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="id_receta">ID</string>
     <string name="ing_id_receta">Ingrese el ID...</string>
+
+    <!-- Cadenas Mantenimiento Colecciones -->
+    <string name="gestionar_colecciones">Gestionar colecciones</string>
+    <string name="id_coleccion">ID Coleccion</string>
+    <string name="nombre_coleccion">Nombre</string>
+    <string name="descripcion_coleccion">Descripcion</string>
+    <string name="id_usuario">ID Usuario</string>
+    <string name="ingresar_idColeccion">Ingresar ID Coleccion</string>
+    <string name="ingresar_nombreColeccion">Ingresar nombre coleccion...</string>
+    <string name="ingresar_descripcionColeccion">Ingresar descripcion</string>
+    <string name="ingresar_idUserC">Ingresar ID Usuario</string>
+    <string name="btn_guardar_coleccion">Guardar Coleccion</string>
+
 </resources>
