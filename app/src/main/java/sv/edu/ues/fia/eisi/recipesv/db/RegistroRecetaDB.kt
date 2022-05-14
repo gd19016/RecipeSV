@@ -10,14 +10,17 @@ import kotlinx.coroutines.launch
 
 @Database(
     entities = [
-        RecetaEntity::class
+        RecetaEntity::class,
+    UsuarioEntity::class
+
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 
 abstract class RegistroRecetaDB : RoomDatabase() {
     abstract fun recetaDao(): RecetaDao
+    abstract fun usuarioDao(): UsuarioDao
 
     private class RecetaDBCallback(
         private val scope: CoroutineScope
@@ -33,6 +36,7 @@ abstract class RegistroRecetaDB : RoomDatabase() {
         suspend fun populateDatabase(db: RegistroRecetaDB) {
             // Limpiar base
             db.recetaDao().deleteAll()
+            db.usuarioDao()
         }
     }
     companion object {
@@ -47,7 +51,9 @@ abstract class RegistroRecetaDB : RoomDatabase() {
                     context.applicationContext,
                     RegistroRecetaDB::class.java,
                     "registro_receta_db"
-                ).addCallback(RecetaDBCallback(scope)).build()
+                )    .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
+                    .addCallback(RecetaDBCallback(scope)).build()
                 INSTANCE = instance
                 instance
             }
