@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_recetas">
+
     <fragment
         android:id="@+id/nav_recetas"
         android:name="sv.edu.ues.fia.eisi.recipesv.ui.receta.RecetaFragment"
@@ -13,11 +14,28 @@
             android:id="@+id/action_nav_receta_to_nav_guardar_receta"
             app:destination="@id/nav_guardar_receta" />
     </fragment>
+
     <fragment
         android:id="@+id/nav_guardar_receta"
         android:name="sv.edu.ues.fia.eisi.recipesv.ui.receta.GuardarRecetaFragment"
         android:label="@string/gestionar_recetas"
         tools:layout="@layout/fragment_guardar_receta" />
+
+    <fragment
+        android:id="@+id/nav_colecciones"
+        android:name="sv.edu.ues.fia.eisi.recipesv.ui.colecciones.ColeccionesFragment"
+        android:label="@string/gestionar_colecciones"
+        tools:layout="@layout/colecciones_fragment" >
+        <action
+            android:id="@+id/action_nav_coleccion_to_nav_guardar_coleccion"
+            app:destination="@id/nav_guardar_coleccion" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_guardar_coleccion"
+        android:name="sv.edu.ues.fia.eisi.recipesv.ui.colecciones.GuardarColeccionFragment"
+        android:label="@string/gestionar_colecciones"
+        tools:layout="@layout/fragment_guardar_coleccion" />
 
     <fragment
         android:id="@+id/nav_usuarios"
