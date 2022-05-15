@@ -21,8 +21,6 @@
         android:label="@string/gestionar_recetas"
         tools:layout="@layout/fragment_guardar_receta" />
 
-
-
     <fragment
         android:id="@+id/nav_colecciones"
         android:name="sv.edu.ues.fia.eisi.recipesv.ui.colecciones.ColeccionesFragment"
@@ -39,4 +37,18 @@
         android:label="@string/gestionar_colecciones"
         tools:layout="@layout/fragment_guardar_coleccion" />
 
+    <fragment
+        android:id="@+id/nav_usuarios"
+        android:name="sv.edu.ues.fia.eisi.recipesv.ui.usuario.UsuarioFragment"
+        android:label="Gestionar Usuarios"
+        tools:layout="@layout/fragment_usuario" >
+        <action
+            android:id="@+id/action_nav_usuario_to_nav_guardar_usuario"
+            app:destination="@id/nav_guardar_usuario" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_guardar_usuario"
+        android:name="sv.edu.ues.fia.eisi.recipesv.ui.usuario.GuardarUsuarioFragment"
+        android:label="Gestionar Usuarios"
+        tools:layout="@layout/fragment_guardar_usuario" />
 </navigation>

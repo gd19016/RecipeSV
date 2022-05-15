@@ -27,7 +27,6 @@ class RegistroRecetaRepository(private val db: RegistroRecetaDB) {
         db.recetaDao().delete(receta)
     }
 
-
     /***************************
      * Colecciones repository
      ***************************/
@@ -49,5 +48,27 @@ class RegistroRecetaRepository(private val db: RegistroRecetaDB) {
     @WorkerThread
     suspend fun delete(coleccion: ColeccionesEntity) {
         db.coleccionesDao().delete(coleccion)
+    }
+
+    /***************************
+     * Usuario repository
+     ***************************/
+    val usuarios: LiveData<List<UsuarioEntity>> = db.usuarioDao().getAll();
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insert(usuario: UsuarioEntity) {
+        db.usuarioDao().insert(usuario)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun update(usuario: UsuarioEntity) {
+        db.usuarioDao().update(usuario)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(usuario: UsuarioEntity) {
+        db.usuarioDao().delete(usuario)
     }
 }
