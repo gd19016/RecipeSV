@@ -22,6 +22,7 @@ abstract class RegistroRecetaDB : RoomDatabase() {
     abstract fun recetaDao(): RecetaDao
     abstract fun coleccionesDao(): ColeccionesDao
     abstract fun usuarioDao(): UsuarioDao
+    abstract fun coleccionesDao(): ColeccionesDao
 
     private class RecetaDBCallback(
         private val scope: CoroutineScope
