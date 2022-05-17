@@ -34,9 +34,11 @@ class ColeccionesFragment : Fragment(), ColeccionesListAdapter.OnColeccionesClic
         ).get(ColeccionesViewModel::class.java)
         return inflater.inflate(R.layout.colecciones_fragment, container, false)
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = ColeccionesListAdapter(this)
@@ -51,10 +53,12 @@ class ColeccionesFragment : Fragment(), ColeccionesListAdapter.OnColeccionesClic
             findNavController().navigate(R.id.action_nav_coleccion_to_nav_guardar_coleccion)
         }
     }
+
     override fun onEditColeccionesClicked(coleccion: ColeccionesEntity) {
         viewModel.coleccionActual = coleccion
         findNavController().navigate(R.id.action_nav_coleccion_to_nav_guardar_coleccion)
     }
+
     override fun onDeleteColeccionesClicked(coleccion: ColeccionesEntity) {
         val builder = AlertDialog.Builder(activity)
         builder.setMessage("Estas seguro que deseas borrar la coleccion con identificador: ${coleccion.idColeccion}?")
