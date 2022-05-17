@@ -8,16 +8,13 @@
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/content_main.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_home.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_inicio.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_ver_receta.xml" value="0.25" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/receta_fragment.xml" value="0.2513586956521739" />
+        <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/recyclerview_list.xml" value="0.1921875" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/recyclerview_mtto.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/menu/activity_main_drawer.xml" value="0.3625" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/menu/main.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/colecciones_fragment.xml" value="0.12364130434782608" />
-        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_coleccion.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.12364130434782608" />
-        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/receta_fragment.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/recyclerview_mtto.xml" value="0.22" />
-        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/menu/activity_main_drawer.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/activity_main.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.18" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_usuario.xml" value="0.33" />
@@ -26,6 +23,12 @@
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/receta_fragment.xml" value="0.10371376811594203" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/recyclerview_mtto.xml" value="0.18" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
+        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/colecciones_fragment.xml" value="0.12364130434782608" />
+        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_coleccion.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.12364130434782608" />
+        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/receta_fragment.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/recyclerview_mtto.xml" value="0.22" />
+        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/menu/activity_main_drawer.xml" value="0.4466666666666667" />
       </map>
     </option>
   </component>

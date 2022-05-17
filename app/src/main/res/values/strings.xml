@@ -49,6 +49,8 @@
     <string name="ingrese_email">Ingrese correo</string>
     <string name="ingrese_password">Ingrese contraseña</string>
     <string name="ingrese_nombre">Ingrese nombre</string>
+    <string name="gestionar_inicio">Inicio</string>
+    <string name="preview">Ver</string>
 
 
 </resources>
