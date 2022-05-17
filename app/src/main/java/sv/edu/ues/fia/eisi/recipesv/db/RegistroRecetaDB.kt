@@ -12,7 +12,8 @@ import kotlinx.coroutines.launch
     entities = [
         RecetaEntity::class,
         ColeccionesEntity::class,
-        UsuarioEntity::class
+        UsuarioEntity::class,
+        FavoritoEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -22,6 +23,7 @@ abstract class RegistroRecetaDB : RoomDatabase() {
     abstract fun recetaDao(): RecetaDao
     abstract fun coleccionesDao(): ColeccionesDao
     abstract fun usuarioDao(): UsuarioDao
+    abstract fun favoritoDao(): FavoritoDao
 
     private class RecetaDBCallback(
         private val scope: CoroutineScope
@@ -39,6 +41,7 @@ abstract class RegistroRecetaDB : RoomDatabase() {
             db.recetaDao().deleteAll()
             db.coleccionesDao().deleteAll()
             db.usuarioDao().deleteAll()
+            db.favoritoDao().deleteAll()
         }
     }
     companion object {
