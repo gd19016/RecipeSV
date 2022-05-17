@@ -13,7 +13,8 @@ import kotlinx.coroutines.launch
         RecetaEntity::class,
         ColeccionesEntity::class,
         UsuarioEntity::class,
-        ColeccionRecetasEntity::class
+        ColeccionRecetasEntity::class,
+        FavoritoEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -23,6 +24,7 @@ abstract class RegistroRecetaDB : RoomDatabase() {
     abstract fun recetaDao(): RecetaDao
     abstract fun coleccionesDao(): ColeccionesDao
     abstract fun usuarioDao(): UsuarioDao
+    abstract fun favoritoDao(): FavoritoDao
     abstract fun colRecetaDao(): ColeccionRecetaDao
 
     private class RecetaDBCallback(
