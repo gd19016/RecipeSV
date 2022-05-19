@@ -9,5 +9,7 @@ data class RecetaEntity(
     @PrimaryKey
     @ColumnInfo(name = "id_receta", defaultValue = "0")
     val idReceta: Int,
-    val nombre: String
+    val nombre: String,
+    val descripcion: String,
+    val pasos: String
 )

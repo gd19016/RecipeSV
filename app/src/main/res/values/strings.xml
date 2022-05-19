@@ -20,17 +20,21 @@
     <string name="gestionar_recetas">Gestionar recetas</string>
 
     <!-- Etiquetas de campos -->
+    <string name="id_receta">ID</string>
     <string name="nombre_receta">Nombre</string>
+    <string name="descripcion_receta">Descripcion</string>
+    <string name="pasos_receta">Pasos</string>
 
     <!-- Tips a mostrar en campos -->
+    <string name="ing_id_receta">Ingrese el ID...</string>
     <string name="ing_nombre_receta">Ingrese nombre de receta…</string>
+    <string name="ing_descripcion_receta">Ingrese la descripcion</string>
+    <string name="ing_pasos_receta">Ingrese los pasos...</string>
 
     <!-- Titulos botones -->
     <string name="btn_guardar_receta">Guardar Receta</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="id_receta">ID</string>
-    <string name="ing_id_receta">Ingrese el ID...</string>
 
     <!-- Cadenas Mantenimiento Colecciones -->
     <string name="gestionar_colecciones">Gestionar colecciones</string>
