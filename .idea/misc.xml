@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.5" />
+        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_ver_receta.xml" value="0.25" />
+        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/nav_header_main.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.334" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_button_favorite.xml" value="0.1935" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_button_favorito_borde.xml" value="0.1935" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_button_favorito_lleno.xml" value="0.1935" />
