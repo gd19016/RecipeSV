@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.inicio.VerRecetaFragment"
     tools:ignore="ExtraText">
+
     <TextView
         android:id="@+id/id_label"
         android:layout_width="120dp"
@@ -15,6 +16,7 @@
         android:text="@string/id_receta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/nombre_label"
         android:layout_width="120dp"
@@ -24,6 +26,7 @@
         android:text="@string/nombre_receta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/id_label" />
+
     <EditText
         android:id="@+id/id_receta_input"
         android:layout_width="wrap_content"
@@ -36,6 +39,7 @@
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/id_label"
         app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/nombre_input"
         android:layout_width="wrap_content"
@@ -48,4 +52,18 @@
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/nombre_label"
         app:layout_constraintTop_toBottomOf="@id/id_receta_input" />
+
+    <ImageButton
+        android:id="@+id/btn_favorito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/favorito_hint"
+        android:src="@drawable/ic_button_favorito_borde"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombre_input"
+        app:layout_constraintVertical_bias="0.06" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

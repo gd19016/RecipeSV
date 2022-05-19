@@ -51,6 +51,7 @@
     <string name="ingrese_nombre">Ingrese nombre</string>
     <string name="gestionar_inicio">Inicio</string>
     <string name="preview">Ver</string>
+    <string name="favorito_hint">Favorito</string>
 
 
 </resources>

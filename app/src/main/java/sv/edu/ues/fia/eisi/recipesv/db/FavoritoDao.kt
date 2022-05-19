@@ -19,4 +19,7 @@ interface FavoritoDao {
 
     @Query("DELETE FROM favorito")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM favorito WHERE idReceta = :pIdReceta and idUsuario = :pIdUsuario")
+    suspend fun getFavorito(pIdReceta: Int, pIdUsuario: Int): FavoritoEntity?
 }

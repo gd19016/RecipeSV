@@ -4,21 +4,37 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import sv.edu.ues.fia.eisi.recipesv.db.FavoritoEntity
 import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
 import sv.edu.ues.fia.eisi.recipesv.db.RegistroRecetaRepository
 
 class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewModel() {
     val recetas: LiveData<List<RecetaEntity>> = repository.recetas
     var recetaActual: RecetaEntity? = null
-    fun insert(receta: RecetaEntity) = viewModelScope.launch {
-        repository.insert(receta)
+    val favoritos: LiveData<List<FavoritoEntity>> = repository.favoritos
+    var favoritoActual: FavoritoEntity? = null
+    var favoritoConsultado: FavoritoEntity? = null
+    fun insert(favorito: FavoritoEntity) = viewModelScope.launch {
+        repository.insert(favorito)
     }
-    fun update(receta: RecetaEntity) = viewModelScope.launch {
-        repository.update(receta)
+    fun update(favorito: FavoritoEntity) = viewModelScope.launch {
+        repository.update(favorito)
     }
-    fun delete(receta: RecetaEntity) = viewModelScope.launch {
-        repository.delete(receta)
+    fun delete(favorito: FavoritoEntity) = viewModelScope.launch {
+        repository.delete(favorito)
+    }
+    fun getFavorito(pIdReceta: Int, pIdUsuario: Int): FavoritoEntity? {
+        var favoritoConsultado: FavoritoEntity?
+        runBlocking {
+            val resultado = async { repository.getFavorito(pIdReceta, pIdUsuario) }
+            runBlocking{
+                favoritoConsultado = resultado.await()
+            }
+        }
+        return favoritoConsultado
     }
 }
 

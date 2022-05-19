@@ -43,6 +43,8 @@ abstract class RegistroRecetaDB : RoomDatabase() {
             db.recetaDao().deleteAll()
             db.coleccionesDao().deleteAll()
             db.usuarioDao().deleteAll()
+            db.favoritoDao().deleteAll()
+            db.colRecetaDao().deleteAll()
         }
     }
     companion object {
