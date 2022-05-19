@@ -71,4 +71,30 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
     suspend fun delete(usuario: UsuarioEntity) {
         db.usuarioDao().delete(usuario)
     }
+
+    /***************************
+     * Favorito repository
+     ***************************/
+    val favoritos: LiveData<List<FavoritoEntity>> = db.favoritoDao().getAll()
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insert(favorito: FavoritoEntity) {
+        db.favoritoDao().insert(favorito)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun update(favorito: FavoritoEntity) {
+        db.favoritoDao().update(favorito)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(favorito: FavoritoEntity) {
+        db.favoritoDao().delete(favorito)
+    }
+
+    suspend fun getFavorito(pIdReceta: Int, pIdUsuario: Int): FavoritoEntity? {
+        return db.favoritoDao().getFavorito(pIdReceta, pIdUsuario)
+    }
 }
