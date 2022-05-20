@@ -97,4 +97,54 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
     suspend fun getFavorito(pIdReceta: Int, pIdUsuario: Int): FavoritoEntity? {
         return db.favoritoDao().getFavorito(pIdReceta, pIdUsuario)
     }
+
+    /***************************
+     * Dificultad repository
+     ***************************/
+
+    val dificultad: LiveData<List<DificultadEntity>> = db.dificultadDao().getAll()
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insert(dificultad: DificultadEntity) {
+        db.dificultadDao().insert(dificultad)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun update(dificultad: DificultadEntity) {
+        db.dificultadDao().update(dificultad)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(dificultad: DificultadEntity) {
+        db.dificultadDao().delete(dificultad)
+    }
+
+    /***************************
+     * Tipo repository
+     ***************************/
+
+    val tipo: LiveData<List<TipoEntity>> = db.tipoDao().getAll()
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insert(tipo: TipoEntity) {
+        db.tipoDao().insert(tipo)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun update(tipo: TipoEntity) {
+        db.tipoDao().update(tipo)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(tipo: TipoEntity) {
+        db.tipoDao().delete(tipo)
+    }
+
+
 }
