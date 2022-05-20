@@ -1,12 +1,22 @@
 package sv.edu.ues.fia.eisi.recipesv.ui.inicio
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context.NOTIFICATION_SERVICE
+import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import sv.edu.ues.fia.eisi.recipesv.R
@@ -18,9 +28,6 @@ import sv.edu.ues.fia.eisi.recipesv.ui.receta.RecetaViewModelFactory
 
 class VerRecetaFragment : Fragment() {
     private lateinit var viewModel: RecetaViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +42,8 @@ class VerRecetaFragment : Fragment() {
         val idReceta: EditText = view.findViewById(R.id.id_receta_input)
         val nombre: EditText = view.findViewById(R.id.nombre_input)
         val favoritoButton: ImageButton = view.findViewById(R.id.btn_favorito)
+        val iniciarButton: ImageButton = view.findViewById(R.id.btn_iniciar_conteo)
+        val viewVimer: TextView = view.findViewById(R.id.view_timer)
 
         val receta = viewModel.recetaActual
 
@@ -45,6 +54,32 @@ class VerRecetaFragment : Fragment() {
         } else {
             idReceta.setText("0")
             nombre.setText("")
+        }
+
+        iniciarButton.setOnClickListener{
+            val timer = (object : CountDownTimer(20000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    viewVimer.text = (millisUntilFinished / 1000).toString()
+                }
+
+                override fun onFinish() {
+                    Toast.makeText(requireContext(), "Finished.", Toast.LENGTH_LONG).show()
+                    val builder = NotificationCompat.Builder(requireContext(), "notif_recipe_sv")
+                        .setSmallIcon(R.drawable.ic_button_favorito_lleno)
+                        .setContentTitle("My notification")
+                        .setContentText("Much longer text that cannot fit one line...")
+                        .setStyle(
+                            NotificationCompat.BigTextStyle()
+                                .bigText("Much longer text that cannot fit one line...")
+                        )
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+                    val manager = NotificationManagerCompat.from(requireContext())
+                    manager.notify(0, builder.build())
+                }
+            }).apply {
+                start()
+            }
         }
 
         favoritoButton.setOnClickListener{
