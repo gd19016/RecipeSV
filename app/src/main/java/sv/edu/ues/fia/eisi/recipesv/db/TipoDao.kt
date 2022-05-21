@@ -8,6 +8,9 @@ interface TipoDao {
     @Query("SELECT * FROM tipo")
     fun getAll(): LiveData<List<TipoEntity>>
 
+    @Query("SELECT id_tipo || '-' || nombre FROM tipo")
+    suspend fun getAllForSpinnerTipo(): Array<String>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(tipo: TipoEntity)
 

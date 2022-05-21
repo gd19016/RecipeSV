@@ -134,7 +134,7 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
      * Tipo repository
      ***************************/
 
-    val tipo: LiveData<List<TipoEntity>> = db.tipoDao().getAll()
+    val tipos: LiveData<List<TipoEntity>> = db.tipoDao().getAll()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
@@ -152,6 +152,10 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
     @WorkerThread
     suspend fun delete(tipo: TipoEntity) {
         db.tipoDao().delete(tipo)
+    }
+
+    suspend fun getTipoForSpinner(): Array<String> {
+        return db.tipoDao().getAllForSpinnerTipo()
     }
 
     /***************************

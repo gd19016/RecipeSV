@@ -32,6 +32,7 @@ class GuardarRecetaFragment : Fragment() {
         val descripcion: EditText = view.findViewById(R.id.descripcion_input)
         val pasos: EditText = view.findViewById(R.id.pasos_input)
         val dificultad: Spinner = view.findViewById(R.id.spinnerDificultad)
+        val tipo: Spinner = view.findViewById(R.id.spinnerTipo)
         val guardarButton: Button = view.findViewById(R.id.guardar_receta)
 
         val receta = viewModel.recetaActual
@@ -67,6 +68,23 @@ class GuardarRecetaFragment : Fragment() {
             spinner.adapter = spinnerArrayAdapter
         } //Fin Spinner Dificultad
 
+        //Spinner Tipo
+        val applicationTipo = activity?.application as RegistroRecetaApplication
+        val viewModelSpinnerTipo: TipoViewModel = ViewModelProvider(requireActivity(),
+            TipoViewModelFactory(applicationTipo.repository)
+        ).get(TipoViewModel::class.java)
+
+        val listTipo: Array<String>? = viewModelSpinnerTipo.getTipoForSpinner()
+
+        val spinnerTipo: Spinner = view.findViewById(R.id.spinnerTipo)
+
+        if (listTipo != null) {
+            val spinnerArrayAdapter: ArrayAdapter<String> =
+                ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, listTipo)
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // The drop down view
+
+            spinnerTipo.adapter = spinnerArrayAdapter
+        } //Fin Spinner Tipo
 
         guardarButton.setOnClickListener{
             if (idReceta.text.isNullOrBlank() ||
@@ -85,7 +103,8 @@ class GuardarRecetaFragment : Fragment() {
                         nombre.text.toString(),
                         descripcion.text.toString(),
                         pasos.text.toString(),
-                        dificultad.selectedItem.toString()
+                        dificultad.selectedItem.toString(),
+                        tipo.selectedItem.toString()
                     )
                 )
             } else {
@@ -95,7 +114,8 @@ class GuardarRecetaFragment : Fragment() {
                         nombre.text.toString(),
                         descripcion.text.toString(),
                         pasos.text.toString(),
-                        dificultad.selectedItem.toString()
+                        dificultad.selectedItem.toString(),
+                        tipo.selectedItem.toString()
                     )
                 )
             }
