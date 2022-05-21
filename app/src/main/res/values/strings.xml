@@ -25,7 +25,7 @@
     <string name="descripcion_receta">Descripcion</string>
     <string name="pasos_receta">Pasos</string>
     <string name="tiempo_receta">Tiempo del paso</string>
-
+  
     <!-- Etiquetas de mantenimiento ingredientes -->
     <string name="gestionar_ingredientes">Gestionar ingredientes</string>
     <string name="id_ingrediente">ID</string>
@@ -69,6 +69,7 @@
     <string name="iniciar_conteo_hint">Iniciar</string>
     <string name="channel_name">notif_recipesv</string>
     <string name="channel_description">Notificaciones de RecipeSV</string>
+    <string name="detalle_receta">Detalle Receta</string>
 
 
 </resources>
