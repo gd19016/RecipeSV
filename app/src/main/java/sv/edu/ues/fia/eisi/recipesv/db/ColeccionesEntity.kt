@@ -9,7 +9,6 @@ class ColeccionesEntity (
     @PrimaryKey
     @ColumnInfo(name = "id_coleccion", defaultValue = "0")
     val idColeccion: Int,
-
     val nombre: String,
     val descripcion: String,
     val idUsuario: Int
