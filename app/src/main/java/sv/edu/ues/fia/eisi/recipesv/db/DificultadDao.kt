@@ -8,6 +8,9 @@ interface DificultadDao {
     @Query("SELECT * FROM dificultad")
     fun getAll(): LiveData<List<DificultadEntity>>
 
+    @Query("SELECT id_dificultad || '-' || nombre FROM dificultad")
+    suspend fun getAllForSpinnerDificultad(): Array<String>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(dificultad: DificultadEntity)
 

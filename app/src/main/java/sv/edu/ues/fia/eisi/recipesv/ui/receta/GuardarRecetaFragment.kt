@@ -32,6 +32,7 @@ class GuardarRecetaFragment : Fragment() {
         val nombre: EditText = view.findViewById(R.id.nombre_input)
         val descripcion: EditText = view.findViewById(R.id.descripcion_input)
         val pasos: EditText = view.findViewById(R.id.pasos_input)
+        val dificultad: Spinner = view.findViewById(R.id.spinnerDificultad)
         val tiempo: EditText = view.findViewById(R.id.tiempo_input)
         val guardarButton: Button = view.findViewById(R.id.guardar_receta)
 
@@ -52,6 +53,25 @@ class GuardarRecetaFragment : Fragment() {
             tiempo.setText("")
         }
 
+        //spinner Dificultad
+        val application = activity?.application as RegistroRecetaApplication
+        val viewModelSpinner: DificultadViewModel = ViewModelProvider(requireActivity(),
+            DificultadViewModelFactory(application.repository)
+        ).get(DificultadViewModel::class.java)
+
+        val listDificultad: Array<String>? = viewModelSpinner.getDificultadForSpinner()
+
+        val spinner: Spinner = view.findViewById(R.id.spinnerDificultad)
+
+        if (listDificultad != null) {
+            val spinnerArrayAdapter: ArrayAdapter<String> =
+                ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, listDificultad)
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // The drop down view
+
+            spinner.adapter = spinnerArrayAdapter
+        } //Fin Spinner Dificultad
+
+
         guardarButton.setOnClickListener{
             if (idReceta.text.isNullOrBlank() ||
                 nombre.text.isNullOrBlank()||
@@ -70,6 +90,7 @@ class GuardarRecetaFragment : Fragment() {
                         nombre.text.toString(),
                         descripcion.text.toString(),
                         pasos.text.toString(),
+                        dificultad.selectedItem.toString(),
                         tiempo.text.toString().toInt()
                     )
                 )
@@ -80,6 +101,7 @@ class GuardarRecetaFragment : Fragment() {
                         nombre.text.toString(),
                         descripcion.text.toString(),
                         pasos.text.toString(),
+                        dificultad.selectedItem.toString(),
                         tiempo.text.toString().toInt()
                     )
                 )
