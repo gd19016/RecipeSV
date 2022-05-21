@@ -43,7 +43,7 @@ class GuardarRecetaFragment : Fragment() {
             nombre.setText(receta.nombre)
             descripcion.setText(receta.descripcion)
             pasos.setText(receta.pasos)
-            tiempo.setText(receta.tiempo)
+            tiempo.setText(receta.tiempo.toString())
         } else {
             idReceta.setText("0")
             nombre.setText("")
