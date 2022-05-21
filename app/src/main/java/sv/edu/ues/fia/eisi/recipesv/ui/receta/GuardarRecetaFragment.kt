@@ -23,7 +23,8 @@ class GuardarRecetaFragment : Fragment() {
     ): View? {
         val application = activity?.application as RegistroRecetaApplication
         viewModel = ViewModelProvider(requireActivity(),
-            RecetaViewModelFactory(application.repository)).get(RecetaViewModel::class.java)
+            RecetaViewModelFactory(application.repository))
+            .get(RecetaViewModel::class.java)
         return inflater.inflate(R.layout.fragment_guardar_receta, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,6 +32,7 @@ class GuardarRecetaFragment : Fragment() {
         val nombre: EditText = view.findViewById(R.id.nombre_input)
         val descripcion: EditText = view.findViewById(R.id.descripcion_input)
         val pasos: EditText = view.findViewById(R.id.pasos_input)
+        val tiempo: EditText = view.findViewById(R.id.tiempo_input)
         val guardarButton: Button = view.findViewById(R.id.guardar_receta)
 
         val receta = viewModel.recetaActual
@@ -41,18 +43,21 @@ class GuardarRecetaFragment : Fragment() {
             nombre.setText(receta.nombre)
             descripcion.setText(receta.descripcion)
             pasos.setText(receta.pasos)
+            tiempo.setText(receta.tiempo)
         } else {
             idReceta.setText("0")
             nombre.setText("")
             descripcion.setText("")
             pasos.setText("")
+            tiempo.setText("")
         }
 
         guardarButton.setOnClickListener{
             if (idReceta.text.isNullOrBlank() ||
                 nombre.text.isNullOrBlank()||
                 descripcion.text.isNullOrBlank()||
-                pasos.text.isNullOrBlank()) {
+                pasos.text.isNullOrBlank()||
+                tiempo.text.isNullOrBlank()) {
                 Toast.makeText(context, "Todos los campos son requeridos",
                     Toast.LENGTH_LONG).show()
                 return@setOnClickListener
@@ -64,7 +69,8 @@ class GuardarRecetaFragment : Fragment() {
                         receta.idReceta,
                         nombre.text.toString(),
                         descripcion.text.toString(),
-                        pasos.text.toString()
+                        pasos.text.toString(),
+                        tiempo.text.toString().toInt()
                     )
                 )
             } else {
@@ -73,7 +79,8 @@ class GuardarRecetaFragment : Fragment() {
                         idReceta.text.toString().toInt(),
                         nombre.text.toString(),
                         descripcion.text.toString(),
-                        pasos.text.toString()
+                        pasos.text.toString(),
+                        tiempo.text.toString().toInt()
                     )
                 )
             }

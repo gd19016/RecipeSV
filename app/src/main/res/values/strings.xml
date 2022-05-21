@@ -24,12 +24,14 @@
     <string name="nombre_receta">Nombre</string>
     <string name="descripcion_receta">Descripcion</string>
     <string name="pasos_receta">Pasos</string>
+    <string name="tiempo_receta">Tiempo del paso</string>
 
     <!-- Tips a mostrar en campos -->
     <string name="ing_id_receta">Ingrese el ID...</string>
     <string name="ing_nombre_receta">Ingrese nombre de receta…</string>
     <string name="ing_descripcion_receta">Ingrese la descripcion</string>
     <string name="ing_pasos_receta">Ingrese los pasos...</string>
+    <string name="ing_tiempo_receta">Ingrese los minutos Ej:1, 2 ...</string>
 
     <!-- Titulos botones -->
     <string name="btn_guardar_receta">Guardar Receta</string>
@@ -59,6 +61,7 @@
     <string name="iniciar_conteo_hint">Iniciar</string>
     <string name="channel_name">notif_recipesv</string>
     <string name="channel_description">Notificaciones de RecipeSV</string>
+    <string name="detalle_receta">Detalle Receta</string>
 
     <String-array name = "rol_op">
         <item>Administrador</item>
