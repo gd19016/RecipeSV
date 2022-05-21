@@ -76,6 +76,11 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
         db.usuarioDao().delete(usuario)
     }
 
+    suspend fun ObtenerRolForSpinner(): Array<String> {
+        return db.usuarioDao().getRolForSpinner()
+    }
+
+
     /***************************
      * Favorito repository
      ***************************/

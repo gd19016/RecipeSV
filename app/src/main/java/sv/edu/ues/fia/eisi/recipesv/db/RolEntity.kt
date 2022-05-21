@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class RolEntity(
     @PrimaryKey
     val idRol: Int,
+    @ColumnInfo(name = "nombre", defaultValue = "Admnistrador")
     val nombre: String
 )

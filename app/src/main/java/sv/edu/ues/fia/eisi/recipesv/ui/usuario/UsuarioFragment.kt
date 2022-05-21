@@ -54,7 +54,7 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
     }
     override fun onDeleteUsuarioClicked(usuario: UsuarioEntity) {
         val builder = AlertDialog.Builder(activity)
-        builder.setMessage("Estas seguro que deseas borrar el usuario con identificador: ${usuario.idUsuario}?")
+        builder.setMessage("Estas seguro que deseas borrar el usuario con correo: ${usuario.email}?")
             .setCancelable(false)
             .setPositiveButton("Si") { dialog, id -> viewModel.delete(usuario)
             }
