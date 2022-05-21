@@ -47,7 +47,6 @@ abstract class RegistroRecetaDB : RoomDatabase() {
             }
         }
         suspend fun populateDatabase(db: RegistroRecetaDB) {
-            // Limpiar base
             db.recetaDao().deleteAll()
             db.coleccionesDao().deleteAll()
             db.usuarioDao().deleteAll()
@@ -57,6 +56,27 @@ abstract class RegistroRecetaDB : RoomDatabase() {
             db.tipoDao().deleteAll()
             db.rolDao().deleteAll()
             db.ingredienteDao().deleteAll()
+
+            db.rolDao().insert(RolEntity(0,"Administrador"))
+            db.rolDao().insert(RolEntity(1,"Usuario"))
+
+            db.dificultadDao().insert(DificultadEntity(0, "Fácil"))
+            db.dificultadDao().insert(DificultadEntity(1, "Media"))
+            db.dificultadDao().insert(DificultadEntity(2, "Difícil"))
+
+            db.tipoDao().insert(TipoEntity(0,"Desayuno"))
+            db.tipoDao().insert(TipoEntity(1,"Almuerzo"))
+            db.tipoDao().insert(TipoEntity(2,"Cena"))
+            db.tipoDao().insert(TipoEntity(3,"Merienda"))
+            db.tipoDao().insert(TipoEntity(4,"Refrigerio"))
+
+            db.usuarioDao().insert(UsuarioEntity("gd19016@ues.edu.sv","123456","Roberto Gutiérrez","0"))
+            db.usuarioDao().insert(UsuarioEntity("hr18015@ues.edu.sv","123456","Cicely Hernández","0"))
+            db.usuarioDao().insert(UsuarioEntity("nm19010@ues.edu.sv","123456","Kevin Núñez","0"))
+            db.usuarioDao().insert(UsuarioEntity("hm11019@ues.edu.sv","123456","Erick Hernández","0"))
+            db.usuarioDao().insert(UsuarioEntity("karens.medrano@ues.edu.sv","123456","Karens Medrano","0"))
+
+            db.coleccionesDao().insert(ColeccionesEntity(0,"Mi Colección","", 0))
         }
     }
     companion object {

@@ -3,47 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_button_view.xml" value="0.1" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_menu_coleccion.xml" value="0.366" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.14" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_menu_ingrediente.xml" value="0.3205" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_menu_receta.xml" value="0.34" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.34" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_menu_usuario.xml" value="0.366" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/side_nav_bar.xml" value="0.34" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/app_bar_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/colecciones_fragment.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_gallery.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_coleccion.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_ingrediente.xml" value="0.3177083333333333" />
         <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.5" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_usuario.xml" value="0.3177083333333333" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_inicio.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_usuario.xml" value="0.31068840579710144" />
         <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_ver_receta.xml" value="0.25" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/ingrediente_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/nav_header_main.xml" value="0.21784420289855072" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/receta_fragment.xml" value="0.31068840579710144" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/recyclerview_list.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/recyclerview_mtto.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Cicely Hernandez/AndroidStudioProjects/RecipeSV/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.334" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_button_favorite.xml" value="0.1935" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_button_favorito_borde.xml" value="0.1935" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_button_favorito_lleno.xml" value="0.1935" />
+        <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/ic_button_start.xml" value="0.3635" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/drawable/side_nav_bar.xml" value="0.1935" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/activity_login.xml" value="0.27109375" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/activity_main.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/app_bar_main.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/colecciones_fragment.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/content_main.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.2513586956521739" />
+        <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.33" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_home.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_inicio.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_ver_receta.xml" value="0.25" />
+        <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_ver_receta.xml" value="0.33" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/nav_header_main.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/receta_fragment.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/Rev/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/recyclerview_list.xml" value="0.1921875" />
@@ -53,23 +30,19 @@
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/activity_main.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/app_bar_main.xml" value="0.18" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.25" />
-        <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_usuario.xml" value="0.25" />
+        <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_usuario.xml" value="0.33" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_gurardar_usuario.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_usuario.xml" value="0.21" />
-        <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_ver_receta.xml" value="0.25" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/nav_header_main.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/receta_fragment.xml" value="0.10371376811594203" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/recyclerview_mtto.xml" value="0.18" />
         <entry key="..\:/Users/kevin/AndroidStudioProjects/RecipeSV/app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
         <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/colecciones_fragment.xml" value="0.12364130434782608" />
         <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_coleccion.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.22" />
-        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_ver_receta.xml" value="0.22" />
+        <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/fragment_guardar_receta.xml" value="0.12364130434782608" />
         <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/receta_fragment.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/layout/recyclerview_mtto.xml" value="0.22" />
         <entry key="..\:/Users/sefer/AndroidStudioProjects/RecipeSV/app/src/main/res/menu/activity_main_drawer.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/sefer/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.12817028985507245" />
-        <entry key="..\:/Users/sefer/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.12817028985507245" />
       </map>
     </option>
   </component>

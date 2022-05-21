@@ -29,8 +29,9 @@ class VerRecetaFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_ver_receta, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val idReceta: EditText = view.findViewById(R.id.id_receta_input)
-        val nombre: EditText = view.findViewById(R.id.nombre_input)
+        var idReceta: Int? = null
+        val nombre: TextView = view.findViewById(R.id.nombre_input)
+        val descripcionReceta: TextView = view.findViewById(R.id.descripcion_input)
         val favoritoButton: ImageButton = view.findViewById(R.id.btn_favorito)
         val iniciarButton: ImageButton = view.findViewById(R.id.btn_iniciar_conteo)
         val viewVimer: TextView = view.findViewById(R.id.view_timer)
@@ -40,6 +41,7 @@ class VerRecetaFragment : Fragment() {
 
         val tituloPaso: TextView = view.findViewById(R.id.titulo_paso)
         val descripcionPaso: TextView = view.findViewById(R.id.descripcion_paso)
+        val minutosRecordatorio: EditText = view.findViewById(R.id.tiempo_input)
 
         var pasosReceta: List<String>? = null
 
@@ -49,30 +51,28 @@ class VerRecetaFragment : Fragment() {
         val receta = viewModel.recetaActual
 
         if (receta != null) {
-            idReceta.isEnabled = false
-            idReceta.setText(receta.idReceta.toString())
+            idReceta = receta.idReceta
             nombre.setText(receta.nombre)
-
+            descripcionReceta.setText(receta.descripcion)
             pasosReceta = receta.pasos.lines()
-
-
         } else {
-            idReceta.setText("0")
             nombre.setText("")
+            descripcionReceta.setText("")
         }
-
-        //pasosReceta.removeAll(listOf("", null))
 
         val pasosDepurados: List<String>? = pasosReceta?.filter { !it.isNullOrEmpty() }?.toList()
 
-        /*if (pasosReceta.isNullOrEmpty()) {
-            pasosReceta.forEach {
-                pasosDepurados
-            }
-        }*/
-
         if (pasosDepurados != null) {
             numPasosTotales = pasosDepurados.size
+
+            if (numPasosTotales > 0) {
+                numPasoActual = 1
+
+                val indicePaso = numPasoActual - 1
+
+                "Paso: $numPasoActual:".also { tituloPaso.text = it }
+                descripcionPaso.text = pasosDepurados[indicePaso] ?: "Detalle del paso vacío."
+            }
         } else {
             numPasosTotales = 0
             numPasoActual = 0
@@ -134,20 +134,27 @@ class VerRecetaFragment : Fragment() {
         }
 
         iniciarButton.setOnClickListener{
-            val timer = (object : CountDownTimer(20000, 1000) {
+            if (minutosRecordatorio.text.isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Debe establecer el tiempo en minutos.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            val segundosEspera: Long = minutosRecordatorio.text.toString().toLong() * 60 * 1000
+
+            val timer = (object : CountDownTimer(segundosEspera, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
-                    viewVimer.text = (millisUntilFinished / 1000).toString()
+                    ((millisUntilFinished / 1000).toString() + " segundos para terminar.").also { viewVimer.text = it }
                 }
 
                 override fun onFinish() {
-                    Toast.makeText(requireContext(), "Finished.", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "¡Se terminó el tiempo!.", Toast.LENGTH_LONG).show()
                     val builder = NotificationCompat.Builder(requireContext(), "notif_recipe_sv")
                         .setSmallIcon(R.drawable.ic_button_favorito_lleno)
-                        .setContentTitle("My notification")
-                        .setContentText("Much longer text that cannot fit one line...")
+                        .setContentTitle("Recipe SV")
+                        .setContentText("Se ha completado el tiempo de su recordatorio")
                         .setStyle(
                             NotificationCompat.BigTextStyle()
-                                .bigText("Much longer text that cannot fit one line...")
+                                .bigText("Regrese a la aplicación para seguir con su receta")
                         )
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
@@ -160,19 +167,19 @@ class VerRecetaFragment : Fragment() {
         }
 
         favoritoButton.setOnClickListener{
-            if (idReceta.text != null) {
-                val application = activity?.application as RegistroRecetaApplication
+            if (idReceta != null) {
+                //val application = activity?.application as RegistroRecetaApplication
                 val viewModelFavorito: InicioViewModel = ViewModelProvider(requireActivity(),
                     InicioViewModelFactory(application.repository)
                     ).get(InicioViewModel::class.java)
 
-                val favoritoEntity: FavoritoEntity? = viewModelFavorito.getFavorito(idReceta.text.toString().toInt(), 0)
+                val favoritoEntity: FavoritoEntity? = viewModelFavorito.getFavorito(idReceta, 0)
 
                 if (favoritoEntity != null) {
                     viewModelFavorito.delete(
                         FavoritoEntity(
                             0,
-                            idReceta.text.toString().toInt()
+                            idReceta
                         )
                     )
                     favoritoButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_button_favorito_borde))
@@ -180,7 +187,7 @@ class VerRecetaFragment : Fragment() {
                     viewModelFavorito.insert(
                         FavoritoEntity(
                             0,
-                            idReceta.text.toString().toInt(),
+                            idReceta
                         )
                     )
                     favoritoButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_button_favorito_lleno))

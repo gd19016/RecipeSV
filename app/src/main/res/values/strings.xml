@@ -39,7 +39,7 @@
     <string name="ing_nombre_receta">Ingrese nombre de receta…</string>
     <string name="ing_descripcion_receta">Ingrese la descripcion</string>
     <string name="ing_pasos_receta">Ingrese los pasos...</string>
-    <string name="ing_tiempo_receta">Ingrese los minutos Ej:1, 2 ...</string>
+    <string name="ing_tiempo_receta">Ingrese los minutos de preparación ...</string>
 
     <!-- Titulos botones -->
     <string name="btn_guardar_receta">Guardar Receta</string>
@@ -73,6 +73,8 @@
     <string name="channel_name">notif_recipesv</string>
     <string name="channel_description">Notificaciones de RecipeSV</string>
     <string name="detalle_receta">Detalle Receta</string>
+    <string name="minutos_label">" minutos"</string>
+    <string name="ing_tiempo_recordatorio">Ingrese el tiempo del paso para notificarle al finalizar...</string>
 
 
 </resources>
