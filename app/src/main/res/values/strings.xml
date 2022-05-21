@@ -59,6 +59,7 @@
     <string name="iniciar_conteo_hint">Iniciar</string>
     <string name="channel_name">notif_recipesv</string>
     <string name="channel_description">Notificaciones de RecipeSV</string>
+    <string name="detalle_receta">Detalle Receta</string>
 
 
 </resources>

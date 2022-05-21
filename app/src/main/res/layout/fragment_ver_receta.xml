@@ -83,9 +83,9 @@
         android:hint="@string/ing_descripcion_receta"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
-        android:scrollbars="vertical"
-        android:minLines="2"
         android:maxLines="3"
+        android:minLines="2"
+        android:scrollbars="vertical"
         app:layout_constraintStart_toEndOf="@+id/descripcion_label"
         app:layout_constraintTop_toBottomOf="@id/nombre_input" />
 
@@ -149,5 +149,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titulo_paso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <TextView
+        android:id="@+id/descripcion_paso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/view_timer"
+        app:layout_constraintEnd_toStartOf="@+id/btn_siguiente"
+        app:layout_constraintStart_toEndOf="@+id/btn_anterior"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_paso" />
+
+    <ImageButton
+        android:id="@+id/btn_siguiente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_button_next"
+        app:layout_constraintBottom_toTopOf="@+id/view_timer"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_anterior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_button_previous"
+        app:layout_constraintBottom_toTopOf="@+id/view_timer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titulo_paso" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

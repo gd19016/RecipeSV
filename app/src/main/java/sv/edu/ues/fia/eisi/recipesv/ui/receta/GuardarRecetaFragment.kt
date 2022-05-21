@@ -23,7 +23,8 @@ class GuardarRecetaFragment : Fragment() {
     ): View? {
         val application = activity?.application as RegistroRecetaApplication
         viewModel = ViewModelProvider(requireActivity(),
-            RecetaViewModelFactory(application.repository)).get(RecetaViewModel::class.java)
+            RecetaViewModelFactory(application.repository))
+            .get(RecetaViewModel::class.java)
         return inflater.inflate(R.layout.fragment_guardar_receta, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
