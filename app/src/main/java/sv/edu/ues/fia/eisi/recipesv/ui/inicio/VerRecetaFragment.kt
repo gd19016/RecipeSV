@@ -1,14 +1,7 @@
 package sv.edu.ues.fia.eisi.recipesv.ui.inicio
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context.NOTIFICATION_SERVICE
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.SystemClock
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,15 +9,14 @@ import android.widget.*
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.db.FavoritoEntity
-import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
 import sv.edu.ues.fia.eisi.recipesv.ui.receta.RecetaViewModel
 import sv.edu.ues.fia.eisi.recipesv.ui.receta.RecetaViewModelFactory
+
 
 class VerRecetaFragment : Fragment() {
     private lateinit var viewModel: RecetaViewModel
@@ -54,6 +46,22 @@ class VerRecetaFragment : Fragment() {
         } else {
             idReceta.setText("0")
             nombre.setText("")
+        }
+        val application = activity?.application as RegistroRecetaApplication
+        val viewModelSpinner: InicioViewModel = ViewModelProvider(requireActivity(),
+            InicioViewModelFactory(application.repository)
+        ).get(InicioViewModel::class.java)
+
+        val listColecciones: Array<String>? = viewModelSpinner.getColleccionesForSpinner()
+
+        val spinner: Spinner = view.findViewById(R.id.spinner)
+
+        if (listColecciones != null) {
+            val spinnerArrayAdapter: ArrayAdapter<String> =
+                ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, listColecciones)
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // The drop down view
+
+            spinner.adapter = spinnerArrayAdapter
         }
 
         iniciarButton.setOnClickListener{

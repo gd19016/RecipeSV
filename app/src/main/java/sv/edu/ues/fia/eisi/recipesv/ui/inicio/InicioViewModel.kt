@@ -36,6 +36,16 @@ class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewMo
         }
         return favoritoConsultado
     }
+    fun getColleccionesForSpinner(): Array<String>? {
+        var colleccionesMostrar: Array<String>?
+        runBlocking {
+            val resultado = async { repository.getColeccionesForSpinner() }
+            runBlocking{
+                colleccionesMostrar = resultado.await()
+            }
+        }
+        return colleccionesMostrar
+    }
 }
 
 class InicioViewModelFactory(private val repository: RegistroRecetaRepository) :
