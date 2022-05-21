@@ -67,4 +67,21 @@
         android:name="sv.edu.ues.fia.eisi.recipesv.ui.usuario.GuardarUsuarioFragment"
         android:label="Gestionar Usuarios"
         tools:layout="@layout/fragment_guardar_usuario" />
+
+    <fragment
+        android:id="@+id/nav_ingredientes"
+        android:name="sv.edu.ues.fia.eisi.recipesv.ui.ingrediente.IngredienteFragment"
+        android:label="Gestionar Ingredientes"
+        tools:layout="@layout/ingrediente_fragment" >
+        <action
+            android:id="@+id/action_nav_ingrediente_to_nav_guardar_ingrediente"
+            app:destination="@id/nav_guardar_ingrediente" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_guardar_ingrediente"
+        android:name="sv.edu.ues.fia.eisi.recipesv.ui.ingrediente.GuardarIngredienteFragment"
+        android:label="Gestionar Ingredientes"
+        tools:layout="@layout/fragment_guardar_ingrediente" />
+
 </navigation>

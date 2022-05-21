@@ -25,6 +25,14 @@
     <string name="descripcion_receta">Descripcion</string>
     <string name="pasos_receta">Pasos</string>
     <string name="tiempo_receta">Tiempo del paso</string>
+  
+    <!-- Etiquetas de mantenimiento ingredientes -->
+    <string name="gestionar_ingredientes">Gestionar ingredientes</string>
+    <string name="id_ingrediente">ID</string>
+    <string name="nombre_ingrediente">Nombre</string>
+    <string name="ing_id_ingrediente">Ingrese el ID...</string>
+    <string name="ing_nombre_ingrediente">Ingrese nombre ingrediente…</string>
+    <string name="btn_guardar_ingrediente">Guardar Ingrediente</string>
 
     <!-- Tips a mostrar en campos -->
     <string name="ing_id_receta">Ingrese el ID...</string>
