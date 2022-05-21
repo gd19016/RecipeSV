@@ -41,8 +41,8 @@
 
     <ImageButton
         android:id="@+id/btn_favorito"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:contentDescription="@string/favorito_hint"
         android:minHeight="48dp"
         android:src="@drawable/ic_button_favorito_borde"
@@ -69,7 +69,7 @@
     <TextView
         android:id="@+id/recordatorio_label"
         android:layout_width="wrap_content"
-        android:layout_height="42dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/ing_tiempo_recordatorio"
@@ -79,7 +79,7 @@
     <EditText
         android:id="@+id/tiempo_input"
         android:layout_width="60dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -97,6 +97,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/minutos_label"
+        android:textAlignment="center"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/tiempo_input"
         app:layout_constraintTop_toBottomOf="@id/recordatorio_label" />
 
@@ -148,9 +150,10 @@
         android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:text=""
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/btn_siguiente"
         app:layout_constraintStart_toStartOf="@+id/btn_anterior"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_paso"
-        app:layout_constraintEnd_toStartOf="@+id/btn_siguiente"/>
+        app:layout_constraintTop_toBottomOf="@+id/titulo_paso" />
 
     <ImageButton
         android:id="@+id/btn_siguiente"
