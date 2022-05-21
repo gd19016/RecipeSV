@@ -16,6 +16,7 @@ class GuardarUsuarioFragment : Fragment() {
 
     private lateinit var viewModel: UsuarioViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -31,33 +32,28 @@ class GuardarUsuarioFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val idUsuario: EditText = view.findViewById(R.id.usuarioId_input)
         val correo: EditText = view.findViewById(R.id.email_input)
         val pass: EditText = view.findViewById(R.id.contrasena_input)
         val nombre: EditText = view.findViewById(R.id.nombre_input)
-        val idRol: RadioGroup = view.findViewById(R.id.Rol_radio_group)
+        val idRol: Spinner = view.findViewById(R.id.Rol_spinner)
         val guardarButton: Button = view.findViewById(R.id.guardar_usuario)
 
         val usuario = viewModel.usuarioActual
 
         if (usuario != null) {
-            idUsuario.isEnabled = false
-            idUsuario.setText(usuario.idUsuario.toString())
+            correo.isEnabled = false
             correo.setText(usuario.email)
             pass.setText(usuario.password)
             nombre.setText(usuario.nombre)
-            idRol.check(if(usuario.idRol == 'A') R.id.admin_radio else R.id.user_radio)
         } else {
-            idUsuario.setText("0")
             correo.setText("")
             pass.setText("")
             nombre.setText("")
-            idRol.check(R.id.admin_radio)
+
         }
 
         guardarButton.setOnClickListener{
-            if (idUsuario.text.isNullOrBlank() ||
-                correo.text.isNullOrBlank() ||
+            if (correo.text.isNullOrBlank() ||
                 pass.text.isNullOrBlank() ||
                 nombre.text.isNullOrBlank()) {
                 Toast.makeText(context, "Todos los campos son requeridos",
@@ -68,21 +64,19 @@ class GuardarUsuarioFragment : Fragment() {
             if (usuario != null) {
                 viewModel.update(
                     UsuarioEntity(
-                        usuario.idUsuario,
                         correo.text.toString(),
                         pass.text.toString(),
                         nombre.text.toString(),
-                        if (idRol.checkedRadioButtonId == R.id.admin_radio) 'A' else 'U'
+                        idRol.toString()
                     )
                 )
             } else {
                 viewModel.insert(
                     UsuarioEntity(
-                        idUsuario.text.toString().toInt(),
                         correo.text.toString(),
                         pass.text.toString(),
                         nombre.text.toString(),
-                        if (idRol.checkedRadioButtonId == R.id.admin_radio) 'A' else 'U'
+                        idRol.toString()
                     )
                 )
             }

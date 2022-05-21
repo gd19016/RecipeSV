@@ -60,5 +60,11 @@
     <string name="channel_name">notif_recipesv</string>
     <string name="channel_description">Notificaciones de RecipeSV</string>
 
+    <String-array name = "rol_op">
+        <item>Administrador</item>
+        <item>Usuario</item>
+    </String-array>
+
+
 
 </resources>
