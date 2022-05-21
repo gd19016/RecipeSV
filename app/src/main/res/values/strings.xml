@@ -63,11 +63,5 @@
     <string name="channel_description">Notificaciones de RecipeSV</string>
     <string name="detalle_receta">Detalle Receta</string>
 
-    <String-array name = "rol_op">
-        <item>Administrador</item>
-        <item>Usuario</item>
-    </String-array>
-
-
 
 </resources>

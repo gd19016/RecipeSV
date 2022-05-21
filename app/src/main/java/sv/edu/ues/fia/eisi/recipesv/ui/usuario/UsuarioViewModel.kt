@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import sv.edu.ues.fia.eisi.recipesv.db.RegistroRecetaRepository
 import sv.edu.ues.fia.eisi.recipesv.db.UsuarioEntity
 
@@ -24,6 +26,17 @@ class UsuarioViewModel(private val repository: RegistroRecetaRepository) : ViewM
     fun delete(usuario: UsuarioEntity) = viewModelScope.launch {
         repository.delete(usuario)
     }
+
+    fun getRolForSpinner(): Array<String>? {
+        var RolesMostrar: Array<String>?
+        runBlocking {
+            val resultado = async { repository.ObtenerRolForSpinner()}
+            runBlocking{
+                RolesMostrar = resultado.await()
+            }
+        }
+        return RolesMostrar
+    }
 }
 class UsuarioViewModelFactory(private val repository: RegistroRecetaRepository) :
     ViewModelProvider.Factory {
@@ -34,4 +47,5 @@ class UsuarioViewModelFactory(private val repository: RegistroRecetaRepository) 
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
+
 }

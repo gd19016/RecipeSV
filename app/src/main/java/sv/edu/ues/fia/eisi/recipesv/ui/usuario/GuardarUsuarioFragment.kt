@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.db.UsuarioEntity
+import sv.edu.ues.fia.eisi.recipesv.ui.inicio.InicioViewModel
+import sv.edu.ues.fia.eisi.recipesv.ui.inicio.InicioViewModelFactory
 
 class GuardarUsuarioFragment : Fragment() {
 
@@ -37,6 +39,21 @@ class GuardarUsuarioFragment : Fragment() {
         val nombre: EditText = view.findViewById(R.id.nombre_input)
         val idRol: Spinner = view.findViewById(R.id.Rol_spinner)
         val guardarButton: Button = view.findViewById(R.id.guardar_usuario)
+
+        val application = activity?.application as RegistroRecetaApplication
+        val viewModelSpinner: UsuarioViewModel = ViewModelProvider(requireActivity(),
+            UsuarioViewModelFactory(application.repository)
+        ).get(UsuarioViewModel::class.java)
+
+        val opcionRol: Array<String>? = viewModelSpinner.getRolForSpinner()
+
+        if (opcionRol != null) {
+            val spinnerArrayAdapter: ArrayAdapter<String> =
+                ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, opcionRol)
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // The drop down view
+
+            idRol.adapter = spinnerArrayAdapter
+        }
 
         val usuario = viewModel.usuarioActual
 
