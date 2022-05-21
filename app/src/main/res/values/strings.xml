@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Recipe SV</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_subtitle">github.com/gd19016/RecipeSV</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -58,6 +58,9 @@
     <string name="gestionar_inicio">Inicio</string>
     <string name="preview">Ver</string>
     <string name="favorito_hint">Favorito</string>
+    <string name="iniciar_conteo_hint">Iniciar</string>
+    <string name="channel_name">notif_recipesv</string>
+    <string name="channel_description">Notificaciones de RecipeSV</string>
 
 
 </resources>

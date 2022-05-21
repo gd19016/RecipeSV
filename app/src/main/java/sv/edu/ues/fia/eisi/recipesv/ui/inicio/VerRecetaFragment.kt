@@ -1,26 +1,25 @@
 package sv.edu.ues.fia.eisi.recipesv.ui.inicio
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.db.FavoritoEntity
-import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
 import sv.edu.ues.fia.eisi.recipesv.ui.receta.RecetaViewModel
 import sv.edu.ues.fia.eisi.recipesv.ui.receta.RecetaViewModelFactory
 
+
 class VerRecetaFragment : Fragment() {
     private lateinit var viewModel: RecetaViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +34,8 @@ class VerRecetaFragment : Fragment() {
         val idReceta: EditText = view.findViewById(R.id.id_receta_input)
         val nombre: EditText = view.findViewById(R.id.nombre_input)
         val favoritoButton: ImageButton = view.findViewById(R.id.btn_favorito)
+        val iniciarButton: ImageButton = view.findViewById(R.id.btn_iniciar_conteo)
+        val viewVimer: TextView = view.findViewById(R.id.view_timer)
 
         val receta = viewModel.recetaActual
 
@@ -45,6 +46,48 @@ class VerRecetaFragment : Fragment() {
         } else {
             idReceta.setText("0")
             nombre.setText("")
+        }
+        val application = activity?.application as RegistroRecetaApplication
+        val viewModelSpinner: InicioViewModel = ViewModelProvider(requireActivity(),
+            InicioViewModelFactory(application.repository)
+        ).get(InicioViewModel::class.java)
+
+        val listColecciones: Array<String>? = viewModelSpinner.getColleccionesForSpinner()
+
+        val spinner: Spinner = view.findViewById(R.id.spinner)
+
+        if (listColecciones != null) {
+            val spinnerArrayAdapter: ArrayAdapter<String> =
+                ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, listColecciones)
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // The drop down view
+
+            spinner.adapter = spinnerArrayAdapter
+        }
+
+        iniciarButton.setOnClickListener{
+            val timer = (object : CountDownTimer(20000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    viewVimer.text = (millisUntilFinished / 1000).toString()
+                }
+
+                override fun onFinish() {
+                    Toast.makeText(requireContext(), "Finished.", Toast.LENGTH_LONG).show()
+                    val builder = NotificationCompat.Builder(requireContext(), "notif_recipe_sv")
+                        .setSmallIcon(R.drawable.ic_button_favorito_lleno)
+                        .setContentTitle("My notification")
+                        .setContentText("Much longer text that cannot fit one line...")
+                        .setStyle(
+                            NotificationCompat.BigTextStyle()
+                                .bigText("Much longer text that cannot fit one line...")
+                        )
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+                    val manager = NotificationManagerCompat.from(requireContext())
+                    manager.notify(0, builder.build())
+                }
+            }).apply {
+                start()
+            }
         }
 
         favoritoButton.setOnClickListener{

@@ -50,6 +50,10 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
         db.coleccionesDao().delete(coleccion)
     }
 
+    suspend fun getColeccionesForSpinner(): Array<String> {
+        return db.coleccionesDao().getAllForSpinner()
+    }
+
     /***************************
      * Usuario repository
      ***************************/
@@ -146,5 +150,26 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
         db.tipoDao().delete(tipo)
     }
 
+    /***************************
+     * Rol repository
+     ***************************/
+
+    val rol: LiveData<List<RolEntity>> = db.rolDao().getAll()
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insert(rol: RolEntity) {
+        db.rolDao().insert(rol)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun update(rol: RolEntity) {
+        db.rolDao().update(rol)
+    }
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(rol: RolEntity) {
+        db.rolDao().delete(rol)
+    }
 
 }
