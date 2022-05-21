@@ -12,5 +12,6 @@ data class RecetaEntity(
     val nombre: String,
     val descripcion: String,
     val pasos: String,
+    val dificultad: String,
     val tiempo: Int
 )

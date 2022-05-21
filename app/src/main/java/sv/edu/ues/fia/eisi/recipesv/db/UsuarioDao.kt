@@ -5,6 +5,9 @@ import androidx.room.*
 
 @Dao
 interface UsuarioDao {
+    @Query("SELECT nombre FROM rol")
+    suspend fun getRolForSpinner(): Array<String>
+
     @Query("SELECT * FROM usuario")
     fun getAll():LiveData<List<UsuarioEntity>>
 

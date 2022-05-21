@@ -27,7 +27,7 @@
     <TextView
         android:id="@+id/descripcion_label"
         android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/descripcion_receta"
@@ -36,7 +36,7 @@
     <TextView
         android:id="@+id/pasos_label"
         android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/pasos_receta"
@@ -78,7 +78,7 @@
     <EditText
         android:id="@+id/descripcion_input"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -90,21 +90,61 @@
         android:maxLines="3"
         app:layout_constraintStart_toEndOf="@+id/descripcion_label"
         app:layout_constraintTop_toBottomOf="@id/nombre_input" />
+
     <EditText
         android:id="@+id/pasos_input"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/ing_pasos_receta"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
-        android:scrollbars="vertical"
-        android:minLines="2"
         android:maxLines="3"
+        android:minLines="2"
+        android:scrollbars="vertical"
         app:layout_constraintStart_toEndOf="@+id/pasos_label"
         app:layout_constraintTop_toBottomOf="@id/descripcion_input" />
+
+    <TextView
+        android:id="@+id/spinnerDificultad_label"
+        android:layout_width="117dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Elegir_dificultad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pasos_label" />
+
+    <Spinner
+        android:id="@+id/spinnerDificultad"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDificultad_label" />
+
+    <TextView
+        android:id="@+id/spinnerTipo_label"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Elegir_tipo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerDificultad"/>
+
+    <Spinner
+        android:id="@+id/spinnerTipo"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTipo_label" />
+
     <EditText
         android:id="@+id/tiempo_input"
         android:layout_width="wrap_content"
@@ -117,6 +157,7 @@
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/nombre_label"
         app:layout_constraintTop_toBottomOf="@id/pasos_input" />
+
     <Button
         android:id="@+id/guardar_receta"
         android:layout_width="wrap_content"

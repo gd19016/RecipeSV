@@ -76,6 +76,11 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
         db.usuarioDao().delete(usuario)
     }
 
+    suspend fun ObtenerRolForSpinner(): Array<String> {
+        return db.usuarioDao().getRolForSpinner()
+    }
+
+
     /***************************
      * Favorito repository
      ***************************/
@@ -106,7 +111,7 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
      * Dificultad repository
      ***************************/
 
-    val dificultad: LiveData<List<DificultadEntity>> = db.dificultadDao().getAll()
+    val dificultades: LiveData<List<DificultadEntity>> = db.dificultadDao().getAll()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
@@ -124,6 +129,10 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
     @WorkerThread
     suspend fun delete(dificultad: DificultadEntity) {
         db.dificultadDao().delete(dificultad)
+    }
+
+    suspend fun getDificultadForSpinner(): Array<String> {
+        return db.dificultadDao().getAllForSpinnerDificultad()
     }
 
     /***************************
@@ -170,6 +179,30 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
     @WorkerThread
     suspend fun delete(rol: RolEntity) {
         db.rolDao().delete(rol)
+    }
+
+    /***************************
+     * Ingrediente repository
+     ***************************/
+
+    val ingredientes: LiveData<List<IngredienteEntity>> = db.ingredienteDao().getAll()
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insert(ingrediente: IngredienteEntity) {
+        db.ingredienteDao().insert(ingrediente)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun update(ingrediente: IngredienteEntity) {
+        db.ingredienteDao().update(ingrediente)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(ingrediente: IngredienteEntity) {
+        db.ingredienteDao().delete(ingrediente)
     }
 
 }

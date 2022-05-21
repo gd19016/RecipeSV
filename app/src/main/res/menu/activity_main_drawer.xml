@@ -23,6 +23,12 @@
             android:id="@+id/nav_colecciones"
             android:icon="@drawable/ic_menu_coleccion"
             android:title="@string/gestionar_colecciones" />
+
+        <item
+            android:id="@+id/nav_ingredientes"
+            android:icon="@drawable/ic_menu_ingrediente"
+            android:title="@string/gestionar_ingredientes" />
+
     </group>
 
 </menu>
