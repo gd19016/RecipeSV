@@ -11,5 +11,7 @@ data class RecetaEntity(
     val idReceta: Int,
     val nombre: String,
     val descripcion: String,
-    val pasos: String
+    val pasos: String,
+    val dificultad: String
+
 )

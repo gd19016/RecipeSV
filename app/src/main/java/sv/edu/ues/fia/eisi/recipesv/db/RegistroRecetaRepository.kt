@@ -106,7 +106,7 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
      * Dificultad repository
      ***************************/
 
-    val dificultad: LiveData<List<DificultadEntity>> = db.dificultadDao().getAll()
+    val dificultades: LiveData<List<DificultadEntity>> = db.dificultadDao().getAll()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
@@ -124,6 +124,10 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
     @WorkerThread
     suspend fun delete(dificultad: DificultadEntity) {
         db.dificultadDao().delete(dificultad)
+    }
+
+    suspend fun getDificultadForSpinner(): Array<String> {
+        return db.dificultadDao().getAllForSpinnerDificultad()
     }
 
     /***************************

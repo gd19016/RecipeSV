@@ -48,6 +48,9 @@
     <string name="ingresar_idUserC">Ingresar ID Usuario</string>
     <string name="btn_guardar_coleccion">Guardar Coleccion</string>
 
+    <string name="Elegir_dificultad">Elegir Dificultad:</string>
+    <string name="Elegir_tipo">Elegir Tipo:</string>
+
 
     <string name="ingrese_id_usuario">Ingrese el ID</string>
     <string name="ingrese_email">Ingrese correo</string>
