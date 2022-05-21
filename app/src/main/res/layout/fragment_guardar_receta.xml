@@ -42,6 +42,15 @@
         android:text="@string/pasos_receta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/descripcion_label" />
+    <TextView
+        android:id="@+id/tiempo_label"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/tiempo_receta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pasos_label" />
     <EditText
         android:id="@+id/id_receta_input"
         android:layout_width="wrap_content"
@@ -66,6 +75,7 @@
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/nombre_label"
         app:layout_constraintTop_toBottomOf="@id/id_receta_input" />
+
     <EditText
         android:id="@+id/descripcion_input"
         android:layout_width="wrap_content"
@@ -98,29 +108,42 @@
         app:layout_constraintStart_toEndOf="@+id/pasos_label"
         app:layout_constraintTop_toBottomOf="@id/descripcion_input" />
 
+    <EditText
+        android:id="@+id/tiempo_input"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/ing_tiempo_receta"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/nombre_label"
+        app:layout_constraintTop_toBottomOf="@id/pasos_input" />
+
     <TextView
         android:id="@+id/spinnerDificultad_label"
         android:layout_width="117dp"
-        android:layout_height="28dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/Elegir_dificultad"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pasos_label" />
+        app:layout_constraintTop_toBottomOf="@id/tiempo_label" />
 
     <Spinner
         android:id="@+id/spinnerDificultad"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerDificultad_label" />
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@id/spinnerDificultad_label"
+        app:layout_constraintTop_toBottomOf="@id/tiempo_input" />
 
     <TextView
         android:id="@+id/spinnerTipo_label"
         android:layout_width="120dp"
-        android:layout_height="0dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/Elegir_tipo"
@@ -129,12 +152,12 @@
 
     <Spinner
         android:id="@+id/spinnerTipo"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerTipo_label" />
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/spinnerTipo_label"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDificultad" />
 
     <Button
         android:id="@+id/guardar_receta"
@@ -144,8 +167,6 @@
         android:text="@string/btn_guardar_receta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerTipo" />
-
-
+        app:layout_constraintTop_toBottomOf="@id/spinnerTipo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

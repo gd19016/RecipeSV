@@ -24,12 +24,22 @@
     <string name="nombre_receta">Nombre</string>
     <string name="descripcion_receta">Descripcion</string>
     <string name="pasos_receta">Pasos</string>
+    <string name="tiempo_receta">Tiempo del paso</string>
+  
+    <!-- Etiquetas de mantenimiento ingredientes -->
+    <string name="gestionar_ingredientes">Gestionar ingredientes</string>
+    <string name="id_ingrediente">ID</string>
+    <string name="nombre_ingrediente">Nombre</string>
+    <string name="ing_id_ingrediente">Ingrese el ID...</string>
+    <string name="ing_nombre_ingrediente">Ingrese nombre ingrediente…</string>
+    <string name="btn_guardar_ingrediente">Guardar Ingrediente</string>
 
     <!-- Tips a mostrar en campos -->
     <string name="ing_id_receta">Ingrese el ID...</string>
     <string name="ing_nombre_receta">Ingrese nombre de receta…</string>
     <string name="ing_descripcion_receta">Ingrese la descripcion</string>
     <string name="ing_pasos_receta">Ingrese los pasos...</string>
+    <string name="ing_tiempo_receta">Ingrese los minutos de preparación ...</string>
 
     <!-- Titulos botones -->
     <string name="btn_guardar_receta">Guardar Receta</string>
@@ -62,6 +72,9 @@
     <string name="iniciar_conteo_hint">Iniciar</string>
     <string name="channel_name">notif_recipesv</string>
     <string name="channel_description">Notificaciones de RecipeSV</string>
+    <string name="detalle_receta">Detalle Receta</string>
+    <string name="minutos_label">" minutos"</string>
+    <string name="ing_tiempo_recordatorio">Ingrese el tiempo del paso para notificarle al finalizar...</string>
 
 
 </resources>

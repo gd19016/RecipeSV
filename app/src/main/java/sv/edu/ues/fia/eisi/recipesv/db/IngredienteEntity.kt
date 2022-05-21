@@ -1,13 +1,14 @@
 package sv.edu.ues.fia.eisi.recipesv.db
 
+
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "rol")
-data class RolEntity(
+@Entity(tableName = "ingrediente")
+data class IngredienteEntity(
     @PrimaryKey
-    val idRol: Int,
-    @ColumnInfo(name = "nombre", defaultValue = "Admnistrador")
+    @ColumnInfo(name = "id_ingrediente", defaultValue = "0")
+    val idIngrediente: Int,
     val nombre: String
 )
