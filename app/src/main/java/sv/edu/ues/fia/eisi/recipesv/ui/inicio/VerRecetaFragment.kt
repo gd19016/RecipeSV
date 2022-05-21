@@ -14,20 +14,18 @@ import androidx.lifecycle.ViewModelProvider
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.db.FavoritoEntity
-import sv.edu.ues.fia.eisi.recipesv.ui.receta.RecetaViewModel
-import sv.edu.ues.fia.eisi.recipesv.ui.receta.RecetaViewModelFactory
 
 
 class VerRecetaFragment : Fragment() {
-    private lateinit var viewModel: RecetaViewModel
+    private lateinit var viewModel: InicioViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val application = activity?.application as RegistroRecetaApplication
         viewModel = ViewModelProvider(requireActivity(),
-            RecetaViewModelFactory(application.repository)
-        ).get(RecetaViewModel::class.java)
+            InicioViewModelFactory(application.repository)
+        ).get(InicioViewModel::class.java)
         return inflater.inflate(R.layout.fragment_ver_receta, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,16 +35,49 @@ class VerRecetaFragment : Fragment() {
         val iniciarButton: ImageButton = view.findViewById(R.id.btn_iniciar_conteo)
         val viewVimer: TextView = view.findViewById(R.id.view_timer)
 
+        val anteriorButton: ImageButton = view.findViewById(R.id.btn_anterior)
+        val siguienteButton: ImageButton = view.findViewById(R.id.btn_siguiente)
+
+        val tituloPaso: TextView = view.findViewById(R.id.titulo_paso)
+        val descripcionPaso: TextView = view.findViewById(R.id.descripcion_paso)
+
+        var pasosReceta: List<String>? = null
+
+        var numPasoActual: Int = 0
+        var numPasosTotales: Int = 0
+
         val receta = viewModel.recetaActual
 
         if (receta != null) {
             idReceta.isEnabled = false
             idReceta.setText(receta.idReceta.toString())
             nombre.setText(receta.nombre)
+
+            pasosReceta = receta.pasos.lines()
+
+
         } else {
             idReceta.setText("0")
             nombre.setText("")
         }
+
+        //pasosReceta.removeAll(listOf("", null))
+
+        val pasosDepurados: List<String>? = pasosReceta?.filter { !it.isNullOrEmpty() }?.toList()
+
+        /*if (pasosReceta.isNullOrEmpty()) {
+            pasosReceta.forEach {
+                pasosDepurados
+            }
+        }*/
+
+        if (pasosDepurados != null) {
+            numPasosTotales = pasosDepurados.size
+        } else {
+            numPasosTotales = 0
+            numPasoActual = 0
+        }
+
         val application = activity?.application as RegistroRecetaApplication
         val viewModelSpinner: InicioViewModel = ViewModelProvider(requireActivity(),
             InicioViewModelFactory(application.repository)
@@ -62,6 +93,44 @@ class VerRecetaFragment : Fragment() {
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // The drop down view
 
             spinner.adapter = spinnerArrayAdapter
+        }
+
+        anteriorButton.setOnClickListener{
+            if (numPasosTotales == 0) {
+                Toast.makeText(requireContext(), "No hay pasos para la receta.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            if (numPasoActual == 1) {
+                Toast.makeText(requireContext(), "No hay pasos previos.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            numPasoActual -= 1
+
+            val indicePaso = numPasoActual - 1
+
+            "Paso: $numPasoActual:".also { tituloPaso.text = it }
+            descripcionPaso.text = pasosDepurados?.get(indicePaso) ?: "Detalle del paso vacío."
+        }
+
+        siguienteButton.setOnClickListener{
+            if (numPasosTotales == 0) {
+                Toast.makeText(requireContext(), "No hay pasos para la receta.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            if (numPasoActual == numPasosTotales) {
+                Toast.makeText(requireContext(), "No hay más pasos.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            numPasoActual += 1
+
+            val indicePaso = numPasoActual - 1
+
+            "Paso: $numPasoActual:".also { tituloPaso.text = it }
+            descripcionPaso.text = pasosDepurados?.get(indicePaso) ?: "Detalle del paso vacío."
         }
 
         iniciarButton.setOnClickListener{

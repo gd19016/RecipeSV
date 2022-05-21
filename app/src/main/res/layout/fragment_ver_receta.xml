@@ -47,6 +47,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/descripcion_label" />
 
+    <TextView
+        android:id="@+id/tiempo_label"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/tiempo_receta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pasos_label" />
+
     <EditText
         android:id="@+id/id_receta_input"
         android:layout_width="wrap_content"
@@ -83,9 +93,9 @@
         android:hint="@string/ing_descripcion_receta"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
-        android:scrollbars="vertical"
-        android:minLines="2"
         android:maxLines="3"
+        android:minLines="2"
+        android:scrollbars="vertical"
         app:layout_constraintStart_toEndOf="@+id/descripcion_label"
         app:layout_constraintTop_toBottomOf="@id/nombre_input" />
 
@@ -105,6 +115,19 @@
         app:layout_constraintStart_toEndOf="@+id/pasos_label"
         app:layout_constraintTop_toBottomOf="@id/descripcion_input" />
 
+    <EditText
+        android:id="@+id/tiempo_input"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/ing_tiempo_receta"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/tiempo_label"
+        app:layout_constraintTop_toBottomOf="@id/pasos_input" />
+
     <ImageButton
         android:id="@+id/btn_favorito"
         android:layout_width="wrap_content"
@@ -116,7 +139,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.644"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pasos_input"
+        app:layout_constraintTop_toBottomOf="@+id/tiempo_input"
         app:layout_constraintVertical_bias="0.06" />
 
     <ImageButton
@@ -149,5 +172,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titulo_paso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <TextView
+        android:id="@+id/descripcion_paso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/view_timer"
+        app:layout_constraintEnd_toStartOf="@+id/btn_siguiente"
+        app:layout_constraintStart_toEndOf="@+id/btn_anterior"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_paso" />
+
+    <ImageButton
+        android:id="@+id/btn_siguiente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_button_next"
+        app:layout_constraintBottom_toTopOf="@+id/view_timer"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_anterior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_button_previous"
+        app:layout_constraintBottom_toTopOf="@+id/view_timer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titulo_paso" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

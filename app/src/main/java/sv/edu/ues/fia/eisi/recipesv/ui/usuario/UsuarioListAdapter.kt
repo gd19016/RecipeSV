@@ -28,12 +28,12 @@ class UsuarioListAdapter (onUsuarioClickListener: OnUsuarioClickListener) :
         RecyclerView.ViewHolder(itemView){
 
         private val onUsuarioClickListener = onUsuarioClickListener
-        private val idUsuario: TextView = itemView.findViewById(R.id.item_id)
+        private val email: TextView = itemView.findViewById(R.id.item_id)
         private val nombre: TextView = itemView.findViewById(R.id.item_name)
         private val updateButton: ImageButton = itemView.findViewById(R.id.update_button)
         private val deleteButton: ImageButton = itemView.findViewById(R.id.delete_button)
         fun bind(usuario: UsuarioEntity) {
-            idUsuario.text = usuario.idUsuario.toString()
+            email.text = usuario.email.toString()
             nombre.text = usuario.nombre
             updateButton.setOnClickListener {
                 onUsuarioClickListener.onEditUsuarioClicked(usuario)
@@ -56,7 +56,7 @@ class UsuarioListAdapter (onUsuarioClickListener: OnUsuarioClickListener) :
         }
         override fun areContentsTheSame(oldItem: UsuarioEntity, newItem: UsuarioEntity):
                 Boolean {
-            return oldItem.idUsuario == newItem.idUsuario
+            return oldItem.email == newItem.email
         }
     }
     interface OnUsuarioClickListener {
