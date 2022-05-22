@@ -5,17 +5,119 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.receta.RecetaFragment">
+
+    <TextView
+        android:id="@+id/filtros_label"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/filtros_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/spinnerColeccion_label"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/coleccion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filtros_label" />
+
+    <Spinner
+        android:id="@+id/spinnerColeccion"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@id/spinnerColeccion_label"
+        app:layout_constraintTop_toBottomOf="@id/filtros_label" />
+
+    <TextView
+        android:id="@+id/spinnerDificultad_label"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/dificultad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerColeccion_label" />
+
+    <Spinner
+        android:id="@+id/spinnerDificultad"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@id/spinnerDificultad_label"
+        app:layout_constraintTop_toBottomOf="@id/spinnerColeccion" />
+
+    <TextView
+        android:id="@+id/spinnerTipo_label"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Elegir_tipo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerDificultad"/>
+
+    <Spinner
+        android:id="@+id/spinnerTipo"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/spinnerTipo_label"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDificultad" />
+
+    <CheckBox
+        android:id="@+id/chk_vista"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Vista"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerTipo_label" />
+
+    <CheckBox
+        android:id="@+id/chk_favorita"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Favorita"
+        app:layout_constraintStart_toEndOf="@+id/chk_vista"
+        app:layout_constraintTop_toBottomOf="@id/spinnerTipo_label" />
+
+    <Button
+        android:id="@+id/btn_buscar"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Buscar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerTipo" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/recyclerview_list"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/chk_vista"
+        tools:listitem="@layout/recyclerview_list" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,5 +125,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:contentDescription="@string/add"
-        android:src="@drawable/ic_button_add"/>
+        android:src="@drawable/ic_button_add"/>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

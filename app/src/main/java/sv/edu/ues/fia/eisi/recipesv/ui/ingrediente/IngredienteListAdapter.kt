@@ -26,12 +26,12 @@ class IngredienteListAdapter (onIngredienteClickListener: OnIngredienteClickList
 
     class IngredienteViewHolder(itemView: View, private val onIngredienteClickListener: OnIngredienteClickListener) :
         RecyclerView.ViewHolder(itemView) {
-        private val idIngrediente: TextView = itemView.findViewById(R.id.item_id)
+        //private val idIngrediente: TextView = itemView.findViewById(R.id.item_id)
         private val nombre: TextView = itemView.findViewById(R.id.item_name)
         private val updateButton: ImageButton = itemView.findViewById(R.id.update_button)
         private val deleteButton: ImageButton = itemView.findViewById(R.id.delete_button)
         fun bind(ingrediente: IngredienteEntity) {
-            idIngrediente.text = ingrediente.idIngrediente.toString()
+            //idIngrediente.text = ingrediente.idIngrediente.toString()
             nombre.text = ingrediente.nombre
             updateButton.setOnClickListener {
                 onIngredienteClickListener.onEditIngredienteClicked(ingrediente)

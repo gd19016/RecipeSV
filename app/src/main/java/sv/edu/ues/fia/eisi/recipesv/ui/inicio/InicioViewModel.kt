@@ -50,6 +50,9 @@ class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewMo
     fun insert(historicoEntity: HistoricoEntity) = viewModelScope.launch {
         repository.insert(historicoEntity)
     }
+    suspend fun getAll(pEmail: String?, pHistorica: String?, pFavorita: String?): List<RecetaEntity> {
+        return repository.getAll(pEmail, pHistorica, pFavorita)
+    }
 }
 
 class InicioViewModelFactory(private val repository: RegistroRecetaRepository) :

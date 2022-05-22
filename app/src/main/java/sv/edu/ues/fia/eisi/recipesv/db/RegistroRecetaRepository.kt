@@ -7,7 +7,7 @@ class RegistroRecetaRepository(private val db: RegistroRecetaDB) {
     /***************************
      * Receta repository
      ***************************/
-val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
+    val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
@@ -25,6 +25,10 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
     @WorkerThread
     suspend fun delete(receta: RecetaEntity) {
         db.recetaDao().delete(receta)
+    }
+
+    suspend fun getAll(pEmail: String?, pHistorica: String?, pFavorita: String?): List<RecetaEntity> {
+        return db.recetaDao().getAll(pEmail, pHistorica, pFavorita)
     }
 
     /***************************

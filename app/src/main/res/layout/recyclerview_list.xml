@@ -20,7 +20,7 @@
         android:id="@+id/preview_button"
         android:layout_width="0dp"
         android:layout_weight=".15"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:contentDescription="@string/preview"
-        android:src="@drawable/ic_button_preview"/>
+        android:src="@drawable/ic_button_next"/>
 </LinearLayout>

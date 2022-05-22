@@ -75,6 +75,9 @@
     <string name="detalle_receta">Detalle Receta</string>
     <string name="minutos_label">" minutos"</string>
     <string name="ing_tiempo_recordatorio">Ingrese el tiempo del paso para notificarle al finalizar...</string>
+    <string name="dificultad">Dificultad:</string>
+    <string name="coleccion">Colección:</string>
+    <string name="filtros_label">Filtros para buscar recetas:</string>
 
 
 </resources>
