@@ -8,6 +8,16 @@
     tools:ignore="ExtraText">
 
     <TextView
+        android:id="@+id/titulo_label"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Detalles de la receta:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/nombre_label"
         android:layout_width="80dp"
         android:layout_height="40dp"
@@ -15,7 +25,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/nombre_receta"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/titulo_label" />
 
     <TextView
         android:id="@+id/descripcion_label"
@@ -37,7 +47,7 @@
         android:hint="@string/ing_nombre_receta"
         android:importantForAutofill="no"
         app:layout_constraintStart_toEndOf="@+id/nombre_label"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/titulo_label" />
 
     <ImageButton
         android:id="@+id/btn_favorito"
@@ -80,7 +90,7 @@
         android:id="@+id/tiempo_input"
         android:layout_width="60dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="5"
@@ -93,9 +103,9 @@
     <TextView
         android:id="@+id/minutos_label"
         android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
         android:text="@string/minutos_label"
         android:textAlignment="center"
         android:textSize="16sp"
@@ -128,13 +138,24 @@
         app:layout_constraintVertical_bias="0.019" />
 
     <TextView
+        android:id="@+id/listado_pasos_label"
+        android:layout_width="300dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Listado de pasos para hacer la receta:"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_timer" />
+
+    <TextView
         android:id="@+id/titulo_paso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_timer" />
+        app:layout_constraintTop_toBottomOf="@id/listado_pasos_label" />
 
     <ImageButton
         android:id="@+id/btn_anterior"
@@ -143,7 +164,16 @@
         android:layout_marginStart="16dp"
         android:src="@drawable/ic_button_previous"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_paso" />
+        app:layout_constraintTop_toBottomOf="@+id/descripcion_paso" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="5dp"
+        android:text="Anterior"
+        app:layout_constraintStart_toEndOf="@id/btn_anterior"
+        app:layout_constraintTop_toBottomOf="@id/descripcion_paso" />
 
     <TextView
         android:id="@+id/descripcion_paso"
@@ -155,6 +185,15 @@
         app:layout_constraintStart_toStartOf="@+id/btn_anterior"
         app:layout_constraintTop_toBottomOf="@+id/titulo_paso" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="5dp"
+        android:text="Siguiente"
+        app:layout_constraintEnd_toStartOf="@id/btn_siguiente"
+        app:layout_constraintTop_toBottomOf="@id/descripcion_paso" />
+
     <ImageButton
         android:id="@+id/btn_siguiente"
         android:layout_width="wrap_content"
@@ -162,13 +201,67 @@
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_button_next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_paso" />
+        app:layout_constraintTop_toBottomOf="@+id/descripcion_paso" />
 
-    <Spinner
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Ingredientes"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_colecciones"
+        app:layout_constraintEnd_toStartOf="@id/btn_ingredientes" />
+
+    <ImageButton
+        android:id="@+id/btn_ingredientes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_button_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_colecciones" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Colecciones"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_comentarios"
+        app:layout_constraintEnd_toStartOf="@id/btn_colecciones" />
+
+    <ImageButton
+        android:id="@+id/btn_colecciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_button_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_comentarios" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Comentarios"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_comentarios" />
+
+    <ImageButton
+        android:id="@+id/btn_comentarios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_button_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!--<Spinner
         android:id="@+id/spinner"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

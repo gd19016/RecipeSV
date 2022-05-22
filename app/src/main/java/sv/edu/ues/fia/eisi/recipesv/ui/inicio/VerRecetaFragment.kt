@@ -11,6 +11,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.db.FavoritoEntity
@@ -84,7 +85,7 @@ class VerRecetaFragment : Fragment() {
             numPasoActual = 0
         }
 
-        val viewModelSpinner: InicioViewModel = ViewModelProvider(requireActivity(),
+        /*val viewModelSpinner: InicioViewModel = ViewModelProvider(requireActivity(),
             InicioViewModelFactory(application.repository)
         ).get(InicioViewModel::class.java)
 
@@ -98,7 +99,7 @@ class VerRecetaFragment : Fragment() {
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // The drop down view
 
             spinner.adapter = spinnerArrayAdapter
-        }
+        }*/
 
         anteriorButton.setOnClickListener{
             if (numPasosTotales == 0) {
@@ -198,6 +199,12 @@ class VerRecetaFragment : Fragment() {
                     favoritoButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_button_favorito_lleno))
                 }
             }
+        }
+
+        val comentariosButton: ImageButton = view.findViewById(R.id.btn_comentarios)
+
+        comentariosButton.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_inicio_to_nav_ver_comentarios)
         }
     }
 }

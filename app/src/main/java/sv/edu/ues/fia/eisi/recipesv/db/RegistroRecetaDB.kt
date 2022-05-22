@@ -19,7 +19,8 @@ import kotlinx.coroutines.launch
         TipoEntity::class,
         RolEntity::class,
         IngredienteEntity::class,
-        HistoricoEntity::class
+        HistoricoEntity::class,
+        ComentarioEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -36,6 +37,7 @@ abstract class RegistroRecetaDB : RoomDatabase() {
     abstract fun rolDao(): RolDao
     abstract fun ingredienteDao(): IngredienteDao
     abstract fun historicoDao(): HistoricoDao
+    abstract fun comentarioDao(): ComentarioDao
 
     private class RecetaDBCallback(
         private val scope: CoroutineScope
@@ -59,6 +61,7 @@ abstract class RegistroRecetaDB : RoomDatabase() {
             db.rolDao().deleteAll()
             db.ingredienteDao().deleteAll()
             db.historicoDao().deleteAll()
+            db.comentarioDao().deleteAll()
 
             db.rolDao().insert(RolEntity(0,"Administrador"))
             db.rolDao().insert(RolEntity(1,"Usuario"))

@@ -9,7 +9,7 @@ interface ColeccionesDao {
     @Query("SELECT * FROM colecciones")
     fun getAll(): LiveData<List<ColeccionesEntity>>
 
-    @Query("SELECT id_coleccion || '-' || nombre FROM colecciones")
+    @Query("select '' union all SELECT id_coleccion || '-' || nombre FROM colecciones")
     suspend fun getAllForSpinner(): Array<String>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

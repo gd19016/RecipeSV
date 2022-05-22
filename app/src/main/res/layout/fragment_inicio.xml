@@ -103,6 +103,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinnerTipo" />
 
+    <TextView
+        android:id="@+id/listado_label"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/listado_recetas_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_buscar" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="0dp"
@@ -114,7 +124,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chk_vista"
+        app:layout_constraintTop_toBottomOf="@id/listado_label"
         tools:listitem="@layout/recyclerview_list" />
 
     <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
