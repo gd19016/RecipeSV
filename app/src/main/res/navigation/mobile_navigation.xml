@@ -23,7 +23,16 @@
         <action
             android:id="@+id/action_nav_inicio_to_nav_ver_comentarios"
             app:destination="@id/nav_ver_comentarios" />
+        <action
+            android:id="@+id/action_nav_inicio_to_nav_ver_colecciones"
+            app:destination="@id/nav_ver_colecciones" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_ver_colecciones"
+        android:name="sv.edu.ues.fia.eisi.recipesv.ui.inicio.ColeccionFragment"
+        android:label="@string/colecciones_receta"
+        tools:layout="@layout/fragment_comentarios" />
 
     <fragment
         android:id="@+id/nav_ver_comentarios"

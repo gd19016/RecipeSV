@@ -8,10 +8,12 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import sv.edu.ues.fia.eisi.recipesv.db.*
+import sv.edu.ues.fia.eisi.recipesv.ui.colecciones.ColeccionesFragment
 
 class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewModel() {
     val recetas: LiveData<List<RecetaEntity>> = repository.recetas
     val comentarios: LiveData<List<ComentarioEntity>> = repository.comentarios
+    val colecciones: LiveData<List<ColeccionRecetasEntity>> = repository.coleccionReceta
     var recetaActual: RecetaEntity? = null
     val favoritos: LiveData<List<FavoritoEntity>> = repository.favoritos
     var favoritoActual: FavoritoEntity? = null
@@ -22,6 +24,9 @@ class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewMo
     fun insert(comentario: ComentarioEntity) = viewModelScope.launch {
         repository.insert(comentario)
     }
+    fun insert(coleccion: ColeccionRecetasEntity) = viewModelScope.launch {
+        repository.insert(coleccion)
+    }
     fun update(favorito: FavoritoEntity) = viewModelScope.launch {
         repository.update(favorito)
     }
@@ -30,6 +35,9 @@ class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewMo
     }
     fun delete(comentario: ComentarioEntity) = viewModelScope.launch {
         repository.delete(comentario)
+    }
+    fun delete(coleccion: ColeccionRecetasEntity) = viewModelScope.launch {
+        repository.delete(coleccion)
     }
     fun getFavorito(pIdReceta: Int, pIdUsuario: Int): FavoritoEntity? {
         var favoritoConsultado: FavoritoEntity?

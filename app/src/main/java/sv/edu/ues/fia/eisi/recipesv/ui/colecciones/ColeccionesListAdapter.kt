@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import sv.edu.ues.fia.eisi.recipesv.R
-import sv.edu.ues.fia.eisi.recipesv.db.ColeccionesEntity
+import sv.edu.ues.fia.eisi.recipesv.db.ColeccionEntity
 
 class ColeccionesListAdapter (onColeccionesClickListener: ColeccionesListAdapter.OnColeccionesClickListener) :
-    ListAdapter<ColeccionesEntity, ColeccionesListAdapter.ColeccionesViewHolder>(ColeccionesListAdapter.ColeccionesComparator()) {
+    ListAdapter<ColeccionEntity, ColeccionesListAdapter.ColeccionesViewHolder>(ColeccionesListAdapter.ColeccionesComparator()) {
 
     private val mOnColeccionesClickListener = onColeccionesClickListener
 
@@ -33,7 +33,7 @@ class ColeccionesListAdapter (onColeccionesClickListener: ColeccionesListAdapter
         private val updateButton: ImageButton = itemView.findViewById(R.id.update_button)
         private val deleteButton: ImageButton = itemView.findViewById(R.id.delete_button)
 
-        fun bind(coleccion: ColeccionesEntity) {
+        fun bind(coleccion: ColeccionEntity) {
 
             //idColeccion.text = coleccion.idColeccion.toString()
             nombre.text = coleccion.nombre
@@ -56,18 +56,18 @@ class ColeccionesListAdapter (onColeccionesClickListener: ColeccionesListAdapter
             }
         }
     }
-    class ColeccionesComparator : DiffUtil.ItemCallback<ColeccionesEntity>() {
-        override fun areItemsTheSame(oldItem: ColeccionesEntity, newItem: ColeccionesEntity): Boolean {
+    class ColeccionesComparator : DiffUtil.ItemCallback<ColeccionEntity>() {
+        override fun areItemsTheSame(oldItem: ColeccionEntity, newItem: ColeccionEntity): Boolean {
             return oldItem === newItem
         }
-        override fun areContentsTheSame(oldItem: ColeccionesEntity, newItem: ColeccionesEntity):
+        override fun areContentsTheSame(oldItem: ColeccionEntity, newItem: ColeccionEntity):
                 Boolean {
             return oldItem.idColeccion == newItem.idColeccion
         }
     }
     interface OnColeccionesClickListener {
-        fun onEditColeccionesClicked(coleccion: ColeccionesEntity)
-        fun onDeleteColeccionesClicked(coleccion: ColeccionesEntity)
+        fun onEditColeccionesClicked(coleccion: ColeccionEntity)
+        fun onDeleteColeccionesClicked(coleccion: ColeccionEntity)
     }
 
 }

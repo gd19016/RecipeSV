@@ -171,7 +171,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginStart="5dp"
-        android:text="Anterior"
+        android:text="Paso anterior"
         app:layout_constraintStart_toEndOf="@id/btn_anterior"
         app:layout_constraintTop_toBottomOf="@id/descripcion_paso" />
 
@@ -190,7 +190,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="5dp"
-        android:text="Siguiente"
+        android:text="Siguiente paso"
         app:layout_constraintEnd_toStartOf="@id/btn_siguiente"
         app:layout_constraintTop_toBottomOf="@id/descripcion_paso" />
 
@@ -204,13 +204,16 @@
         app:layout_constraintTop_toBottomOf="@+id/descripcion_paso" />
 
     <TextView
+        android:id="@+id/ingredientes_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="16dp"
         android:text="Ingredientes"
-        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toTopOf="@id/btn_colecciones"
-        app:layout_constraintEnd_toStartOf="@id/btn_ingredientes" />
+        app:layout_constraintEnd_toStartOf="@id/btn_ingredientes"
+        app:layout_constraintTop_toBottomOf="@id/btn_siguiente"
+        app:layout_constraintVertical_bias="0.9" />
 
     <ImageButton
         android:id="@+id/btn_ingredientes"
@@ -218,17 +221,21 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_button_next"
+        app:layout_constraintTop_toBottomOf="@id/btn_siguiente"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btn_colecciones" />
 
     <TextView
+        android:id="@+id/colecciones_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Colecciones"
-        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toTopOf="@id/btn_comentarios"
-        app:layout_constraintEnd_toStartOf="@id/btn_colecciones" />
+        app:layout_constraintEnd_toStartOf="@id/btn_colecciones"
+        app:layout_constraintTop_toBottomOf="@id/ingredientes_label"
+        app:layout_constraintVertical_bias="0.9" />
 
     <ImageButton
         android:id="@+id/btn_colecciones"
@@ -236,17 +243,21 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_button_next"
+        app:layout_constraintTop_toBottomOf="@id/btn_ingredientes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btn_comentarios" />
 
     <TextView
+        android:id="@+id/comentarios_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="16dp"
         android:text="Comentarios"
-        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_comentarios" />
+        app:layout_constraintEnd_toStartOf="@id/btn_comentarios"
+        app:layout_constraintTop_toBottomOf="@id/colecciones_label"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/btn_comentarios"
@@ -254,6 +265,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_button_next"
+        app:layout_constraintTop_toBottomOf="@id/btn_colecciones"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 

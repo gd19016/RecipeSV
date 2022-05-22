@@ -145,6 +145,8 @@ class VerRecetaFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            iniciarButton.isEnabled = false
+
             val segundosEspera: Long = minutosRecordatorio.text.toString().toLong() * 60 * 1000
 
             val timer = (object : CountDownTimer(segundosEspera, 1000) {
@@ -166,6 +168,7 @@ class VerRecetaFragment : Fragment() {
 
                     val manager = NotificationManagerCompat.from(requireContext())
                     manager.notify(0, builder.build())
+                    iniciarButton.isEnabled = true
                 }
             }).apply {
                 start()
@@ -205,6 +208,12 @@ class VerRecetaFragment : Fragment() {
 
         comentariosButton.setOnClickListener {
             findNavController().navigate(R.id.action_nav_inicio_to_nav_ver_comentarios)
+        }
+
+        val coleccionesButton: ImageButton = view.findViewById(R.id.btn_colecciones)
+
+        coleccionesButton.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_inicio_to_nav_ver_colecciones)
         }
     }
 }

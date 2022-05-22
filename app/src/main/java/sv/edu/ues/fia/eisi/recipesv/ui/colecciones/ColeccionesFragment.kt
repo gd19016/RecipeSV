@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
-import sv.edu.ues.fia.eisi.recipesv.db.ColeccionesEntity
+import sv.edu.ues.fia.eisi.recipesv.db.ColeccionEntity
 
 class ColeccionesFragment : Fragment(), ColeccionesListAdapter.OnColeccionesClickListener {
 
@@ -54,12 +54,12 @@ class ColeccionesFragment : Fragment(), ColeccionesListAdapter.OnColeccionesClic
         }
     }
 
-    override fun onEditColeccionesClicked(coleccion: ColeccionesEntity) {
+    override fun onEditColeccionesClicked(coleccion: ColeccionEntity) {
         viewModel.coleccionActual = coleccion
         findNavController().navigate(R.id.action_nav_coleccion_to_nav_guardar_coleccion)
     }
 
-    override fun onDeleteColeccionesClicked(coleccion: ColeccionesEntity) {
+    override fun onDeleteColeccionesClicked(coleccion: ColeccionEntity) {
         val builder = AlertDialog.Builder(activity)
         builder.setMessage("Estas seguro que deseas borrar la coleccion con identificador: ${coleccion.idColeccion}?")
             .setCancelable(false)

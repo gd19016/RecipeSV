@@ -12,32 +12,27 @@
         android:layout_height="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Comentarios de la receta"
+        android:text="Colecciones asociadas a la receta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/comentario_label"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
+        android:id="@+id/spinnerColeccion_label"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/comentario_label"
+        android:text="@string/coleccion"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/filtros_label" />
 
-    <EditText
-        android:id="@+id/comentario_input"
-        android:layout_width="288dp"
-        android:layout_height="46dp"
+    <Spinner
+        android:id="@+id/spinnerColeccion"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine"
-        android:maxLines="3"
-        android:minLines="2"
-        android:scrollbars="vertical"
-        app:layout_constraintStart_toEndOf="@id/comentario_label"
+        app:layout_constraintStart_toEndOf="@id/spinnerColeccion_label"
         app:layout_constraintTop_toBottomOf="@id/filtros_label" />
 
     <Button
@@ -48,7 +43,7 @@
         android:layout_marginEnd="16dp"
         android:text="@string/btn_guardar_comentario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/comentario_input" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerColeccion" />
 
     <TextView
         android:id="@+id/listado_label"
@@ -56,7 +51,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/listado_comentarios_label"
+        android:text="@string/listado_coleccion_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_agregar" />
 
