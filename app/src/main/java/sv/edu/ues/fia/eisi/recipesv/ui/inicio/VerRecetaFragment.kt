@@ -2,6 +2,7 @@ package sv.edu.ues.fia.eisi.recipesv.ui.inicio
 
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +44,7 @@ class VerRecetaFragment : Fragment() {
         val siguienteButton: ImageButton = view.findViewById(R.id.btn_siguiente)
 
         val tituloPaso: TextView = view.findViewById(R.id.titulo_paso)
-        val descripcionPaso: TextView = view.findViewById(R.id.descripcion_paso)
+        val descripcionPaso: EditText = view.findViewById(R.id.descripcion_paso)
         val minutosRecordatorio: EditText = view.findViewById(R.id.tiempo_input)
 
         var pasosReceta: List<String>? = null
@@ -78,7 +79,7 @@ class VerRecetaFragment : Fragment() {
                 val indicePaso = numPasoActual - 1
 
                 "Paso: $numPasoActual:".also { tituloPaso.text = it }
-                descripcionPaso.text = pasosDepurados[indicePaso] ?: "Detalle del paso vacío."
+                descripcionPaso.setText(pasosDepurados[indicePaso] ?: "Detalle del paso vacío.")
             }
         } else {
             numPasosTotales = 0
@@ -117,7 +118,7 @@ class VerRecetaFragment : Fragment() {
             val indicePaso = numPasoActual - 1
 
             "Paso: $numPasoActual:".also { tituloPaso.text = it }
-            descripcionPaso.text = pasosDepurados?.get(indicePaso) ?: "Detalle del paso vacío."
+            descripcionPaso.setText(pasosDepurados?.get(indicePaso) ?: "Detalle del paso vacío.")
         }
 
         siguienteButton.setOnClickListener{
@@ -136,7 +137,7 @@ class VerRecetaFragment : Fragment() {
             val indicePaso = numPasoActual - 1
 
             "Paso: $numPasoActual:".also { tituloPaso.text = it }
-            descripcionPaso.text = pasosDepurados?.get(indicePaso) ?: "Detalle del paso vacío."
+            descripcionPaso.setText(pasosDepurados?.get(indicePaso) ?: "Detalle del paso vacío.")
         }
 
         iniciarButton.setOnClickListener{
