@@ -7,13 +7,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import sv.edu.ues.fia.eisi.recipesv.db.FavoritoEntity
-import sv.edu.ues.fia.eisi.recipesv.db.HistoricoEntity
-import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
-import sv.edu.ues.fia.eisi.recipesv.db.RegistroRecetaRepository
+import sv.edu.ues.fia.eisi.recipesv.db.*
 
 class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewModel() {
     val recetas: LiveData<List<RecetaEntity>> = repository.recetas
+    val comentarios: LiveData<List<ComentarioEntity>> = repository.comentarios
     var recetaActual: RecetaEntity? = null
     val favoritos: LiveData<List<FavoritoEntity>> = repository.favoritos
     var favoritoActual: FavoritoEntity? = null
@@ -21,11 +19,17 @@ class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewMo
     fun insert(favorito: FavoritoEntity) = viewModelScope.launch {
         repository.insert(favorito)
     }
+    fun insert(comentario: ComentarioEntity) = viewModelScope.launch {
+        repository.insert(comentario)
+    }
     fun update(favorito: FavoritoEntity) = viewModelScope.launch {
         repository.update(favorito)
     }
     fun delete(favorito: FavoritoEntity) = viewModelScope.launch {
         repository.delete(favorito)
+    }
+    fun delete(comentario: ComentarioEntity) = viewModelScope.launch {
+        repository.delete(comentario)
     }
     fun getFavorito(pIdReceta: Int, pIdUsuario: Int): FavoritoEntity? {
         var favoritoConsultado: FavoritoEntity?
@@ -36,6 +40,16 @@ class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewMo
             }
         }
         return favoritoConsultado
+    }
+    fun getNextCommentId(): Int? {
+        var nextId: Int?
+        runBlocking {
+            val resultado = async { repository.getNextCommentId() }
+            runBlocking{
+                nextId = resultado.await()
+            }
+        }
+        return nextId
     }
     fun getColleccionesForSpinner(): Array<String>? {
         var colleccionesMostrar: Array<String>?

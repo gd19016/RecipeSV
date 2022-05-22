@@ -239,4 +239,30 @@ class RegistroRecetaRepository(private val db: RegistroRecetaDB) {
     suspend fun delete(historico: HistoricoEntity) {
         db.historicoDao().delete(historico)
     }
+
+    /***************************
+     * Comentario repository
+     ***************************/
+    val comentarios: LiveData<List<ComentarioEntity>> = db.comentarioDao().getAll()
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insert(comentario: ComentarioEntity) {
+        db.comentarioDao().insert(comentario)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun update(comentario: ComentarioEntity) {
+        db.comentarioDao().update(comentario)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(comentario: ComentarioEntity) {
+        db.comentarioDao().delete(comentario)
+    }
+
+    suspend fun getNextCommentId(): Int? {
+        return db.comentarioDao().getNextId()
+    }
 }

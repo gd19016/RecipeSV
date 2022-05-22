@@ -19,7 +19,17 @@
         android:id="@+id/nav_ver_receta"
         android:name="sv.edu.ues.fia.eisi.recipesv.ui.inicio.VerRecetaFragment"
         android:label="@string/detalle_receta"
-        tools:layout="@layout/fragment_ver_receta" />
+        tools:layout="@layout/fragment_ver_receta">
+        <action
+            android:id="@+id/action_nav_inicio_to_nav_ver_comentarios"
+            app:destination="@id/nav_ver_comentarios" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_ver_comentarios"
+        android:name="sv.edu.ues.fia.eisi.recipesv.ui.inicio.ComentariosFragment"
+        android:label="@string/comentarios_receta"
+        tools:layout="@layout/fragment_comentarios" />
 
     <fragment
         android:id="@+id/nav_recetas"
