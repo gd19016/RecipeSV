@@ -80,6 +80,9 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
         return db.usuarioDao().getRolForSpinner()
     }
 
+    suspend fun getUsuario(pEmail: String, pPassword: String): UsuarioEntity? {
+        return db.usuarioDao().getUsuario(pEmail, pPassword)
+    }
 
     /***************************
      * Favorito repository

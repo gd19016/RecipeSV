@@ -22,4 +22,7 @@ interface UsuarioDao {
 
     @Query("DELETE FROM usuario")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM usuario WHERE email = :pEmail and password = :pPassword")
+    suspend fun getUsuario(pEmail: String, pPassword: String): UsuarioEntity?
 }
