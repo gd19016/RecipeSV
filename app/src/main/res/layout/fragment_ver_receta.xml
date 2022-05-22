@@ -181,11 +181,10 @@
 
     <EditText
         android:id="@+id/descripcion_paso"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="120dp"
         android:layout_marginStart="16dp"
         android:text=""
-        android:textAlignment="center"
         android:inputType="textMultiLine"
         android:clickable="false"
         android:focusable="false"
