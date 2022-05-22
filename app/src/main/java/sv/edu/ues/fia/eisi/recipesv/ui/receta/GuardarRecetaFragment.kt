@@ -54,6 +54,7 @@ class GuardarRecetaFragment : Fragment() {
             tiempo.setText("")
         }
 
+
         //spinner Dificultad
         val application = activity?.application as RegistroRecetaApplication
         val viewModelSpinner: DificultadViewModel = ViewModelProvider(requireActivity(),
