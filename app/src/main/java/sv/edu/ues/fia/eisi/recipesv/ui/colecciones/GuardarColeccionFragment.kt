@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
-import sv.edu.ues.fia.eisi.recipesv.db.ColeccionesEntity
+import sv.edu.ues.fia.eisi.recipesv.db.ColeccionEntity
 
 class GuardarColeccionFragment : Fragment() {
 
@@ -64,7 +64,7 @@ class GuardarColeccionFragment : Fragment() {
 
             if (coleccion != null) {
                 viewModel.update(
-                    ColeccionesEntity(
+                    ColeccionEntity(
                         coleccion.idColeccion,
                         nombre.text.toString(),
                         descripcion.text.toString(),
@@ -73,7 +73,7 @@ class GuardarColeccionFragment : Fragment() {
                 )
             } else {
                 viewModel.insert(
-                    ColeccionesEntity(
+                    ColeccionEntity(
                         idColeccion.text.toString().toInt(),
                         nombre.text.toString(),
                         descripcion.text.toString(),

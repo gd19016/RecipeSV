@@ -34,23 +34,23 @@ class RegistroRecetaRepository(private val db: RegistroRecetaDB) {
     /***************************
      * Colecciones repository
      ***************************/
-    val colecciones: LiveData<List<ColeccionesEntity>> = db.coleccionesDao().getAll()
+    val colecciones: LiveData<List<ColeccionEntity>> = db.coleccionesDao().getAll()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(coleccion: ColeccionesEntity) {
+    suspend fun insert(coleccion: ColeccionEntity) {
         db.coleccionesDao().insert(coleccion)
     }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun update(coleccion: ColeccionesEntity) {
+    suspend fun update(coleccion: ColeccionEntity) {
         db.coleccionesDao().update(coleccion)
     }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun delete(coleccion: ColeccionesEntity) {
+    suspend fun delete(coleccion: ColeccionEntity) {
         db.coleccionesDao().delete(coleccion)
     }
 
@@ -264,5 +264,27 @@ class RegistroRecetaRepository(private val db: RegistroRecetaDB) {
 
     suspend fun getNextCommentId(): Int? {
         return db.comentarioDao().getNextId()
+    }
+
+    /***************************
+     * ColeccionReceta repository
+     ***************************/
+    val coleccionReceta: LiveData<List<ColeccionRecetasEntity>> = db.colRecetaDao().getAll()
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insert(comentario: ColeccionRecetasEntity) {
+        db.colRecetaDao().insert(comentario)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun update(comentario: ColeccionRecetasEntity) {
+        db.colRecetaDao().update(comentario)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(comentario: ColeccionRecetasEntity) {
+        db.colRecetaDao().delete(comentario)
     }
 }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 @Database(
     entities = [
         RecetaEntity::class,
-        ColeccionesEntity::class,
+        ColeccionEntity::class,
         UsuarioEntity::class,
         ColeccionRecetasEntity::class,
         FavoritoEntity::class,
@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 
 abstract class RegistroRecetaDB : RoomDatabase() {
     abstract fun recetaDao(): RecetaDao
-    abstract fun coleccionesDao(): ColeccionesDao
+    abstract fun coleccionesDao(): ColeccionDao
     abstract fun usuarioDao(): UsuarioDao
     abstract fun favoritoDao(): FavoritoDao
     abstract fun colRecetaDao(): ColeccionRecetaDao
@@ -82,7 +82,7 @@ abstract class RegistroRecetaDB : RoomDatabase() {
             db.usuarioDao().insert(UsuarioEntity("hm11019@ues.edu.sv","123456","Erick Hernández","0"))
             db.usuarioDao().insert(UsuarioEntity("karens.medrano@ues.edu.sv","123456","Karens Medrano","0"))
 
-            db.coleccionesDao().insert(ColeccionesEntity(0,"Mi Colección","", 0))
+            db.coleccionesDao().insert(ColeccionEntity(0,"Mi Colección","", 0))
         }
     }
     companion object {

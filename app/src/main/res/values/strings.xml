@@ -24,7 +24,7 @@
     <string name="nombre_receta">Nombre</string>
     <string name="descripcion_receta">Descripcion</string>
     <string name="pasos_receta">Pasos</string>
-    <string name="tiempo_receta">Tiempo del paso</string>
+    <string name="tiempo_receta">Tiempo en minutos</string>
 
     <!-- Etiquetas de mantenimiento ingredientes -->
     <string name="gestionar_ingredientes">Gestionar ingredientes</string>
@@ -80,9 +80,11 @@
     <string name="filtros_label">Filtros para buscar recetas:</string>
     <string name="listado_recetas_label">Listado de recetas:</string>
     <string name="listado_comentarios_label">Listado de comentarios para la receta</string>
-    <string name="btn_guardar_comentario">Guardar Comentario</string>
+    <string name="btn_guardar_comentario">Agregar</string>
     <string name="comentario_label">Comentario:</string>
     <string name="comentarios_receta">Comentarios de Receta</string>
+    <string name="listado_coleccion_label">Listado de colecciones que incluyen la receta</string>
+    <string name="colecciones_receta">Colecciones de Receta</string>
 
 
 </resources>

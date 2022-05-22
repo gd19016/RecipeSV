@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "colecciones")
-class ColeccionesEntity (
+class ColeccionEntity (
     @PrimaryKey
     @ColumnInfo(name = "id_coleccion", defaultValue = "0")
     val idColeccion: Int,
