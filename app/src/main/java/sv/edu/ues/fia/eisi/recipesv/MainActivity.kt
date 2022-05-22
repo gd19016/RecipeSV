@@ -15,6 +15,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
+import sv.edu.ues.fia.eisi.recipesv.db.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,10 +42,34 @@ class MainActivity : AppCompatActivity() {
         btn_submit.setOnClickListener {
             val user_name = et_user_name.text;
             val password = et_password.text;
-            Toast.makeText(this@MainActivity, user_name, Toast.LENGTH_LONG).show()
-            val intent = Intent(this, RecipesActivity::class.java)
-            // start your next activity
-            startActivity(intent)
+
+            /*val repository: RegistroRecetaRepository = RegistroRecetaRepository(RegistroRecetaDB.getDatabase(this))
+            val application = activity?.application as RegistroRecetaApplication
+            val db: RegistroRecetaDB
+
+            val usuarioDao: UsuarioDao? = UsuarioDao()*/
+
+            var usuario: UsuarioEntity?
+
+            val application = this.application as RegistroRecetaApplication
+
+            runBlocking {
+                val resultado = async { application.repository.getUsuario(user_name.toString(), password.toString()) }
+                runBlocking{
+                    usuario = resultado.await()
+                }
+            }
+
+            if (usuario != null) {
+                Toast.makeText(this@MainActivity, "Bienvenido " + usuario!!.nombre, Toast.LENGTH_LONG).show()
+                val intent = Intent(this, RecipesActivity::class.java)
+                // start your next activity
+                startActivity(intent)
+            } else {
+                Toast.makeText(this@MainActivity, "Usuario o contraseña incorrectos.", Toast.LENGTH_LONG).show()
+            }
+
+
 
             /*val toolbar: Toolbar = findViewById(R.id.toolbar)
             setSupportActionBar(toolbar)
