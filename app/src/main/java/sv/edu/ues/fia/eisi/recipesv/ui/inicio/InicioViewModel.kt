@@ -8,6 +8,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import sv.edu.ues.fia.eisi.recipesv.db.FavoritoEntity
+import sv.edu.ues.fia.eisi.recipesv.db.HistoricoEntity
 import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
 import sv.edu.ues.fia.eisi.recipesv.db.RegistroRecetaRepository
 
@@ -45,6 +46,9 @@ class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewMo
             }
         }
         return colleccionesMostrar
+    }
+    fun insert(historicoEntity: HistoricoEntity) = viewModelScope.launch {
+        repository.insert(historicoEntity)
     }
 }
 

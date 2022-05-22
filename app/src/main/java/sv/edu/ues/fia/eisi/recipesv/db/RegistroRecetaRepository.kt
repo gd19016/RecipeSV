@@ -212,4 +212,27 @@ val recetas: LiveData<List<RecetaEntity>> = db.recetaDao().getAll()
         db.ingredienteDao().delete(ingrediente)
     }
 
+    /***************************
+     * Historico repository
+     ***************************/
+
+    val historicos: LiveData<List<HistoricoEntity>> = db.historicoDao().getAll()
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insert(historico: HistoricoEntity) {
+        db.historicoDao().insert(historico)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun update(historico: HistoricoEntity) {
+        db.historicoDao().update(historico)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun delete(historico: HistoricoEntity) {
+        db.historicoDao().delete(historico)
+    }
 }

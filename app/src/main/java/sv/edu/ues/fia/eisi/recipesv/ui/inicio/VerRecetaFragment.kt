@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.db.FavoritoEntity
+import sv.edu.ues.fia.eisi.recipesv.db.HistoricoEntity
 
 
 class VerRecetaFragment : Fragment() {
@@ -29,6 +30,7 @@ class VerRecetaFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_ver_receta, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val application = activity?.application as RegistroRecetaApplication
         var idReceta: Int? = null
         val nombre: TextView = view.findViewById(R.id.nombre_input)
         val descripcionReceta: TextView = view.findViewById(R.id.descripcion_input)
@@ -55,6 +57,10 @@ class VerRecetaFragment : Fragment() {
             nombre.setText(receta.nombre)
             descripcionReceta.setText(receta.descripcion)
             pasosReceta = receta.pasos.lines()
+
+            if (application.usuarioLogueado != null) {
+                viewModel.insert(HistoricoEntity(receta.idReceta, application.usuarioLogueado!!.email))
+            }
         } else {
             nombre.setText("")
             descripcionReceta.setText("")
@@ -78,7 +84,6 @@ class VerRecetaFragment : Fragment() {
             numPasoActual = 0
         }
 
-        val application = activity?.application as RegistroRecetaApplication
         val viewModelSpinner: InicioViewModel = ViewModelProvider(requireActivity(),
             InicioViewModelFactory(application.repository)
         ).get(InicioViewModel::class.java)

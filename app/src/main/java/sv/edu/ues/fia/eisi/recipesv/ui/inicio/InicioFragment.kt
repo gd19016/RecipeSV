@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
+import sv.edu.ues.fia.eisi.recipesv.db.HistoricoEntity
 import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
 
 class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener {

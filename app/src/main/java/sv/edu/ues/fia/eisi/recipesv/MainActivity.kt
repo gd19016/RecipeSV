@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
             if (usuario != null) {
                 Toast.makeText(this@MainActivity, "Bienvenido " + usuario!!.nombre, Toast.LENGTH_LONG).show()
+                application.usuarioLogueado = usuario
                 val intent = Intent(this, RecipesActivity::class.java)
                 // start your next activity
                 startActivity(intent)
