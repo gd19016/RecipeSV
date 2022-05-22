@@ -10,5 +10,5 @@ data class HistoricoEntity(
     @ColumnInfo(name = "id_receta", defaultValue = "0")
     val idReceta: Int,
     @ColumnInfo(name = "id_usuario", defaultValue = "0")
-    val idUsuario: Int
+    val email: String
 )

@@ -25,12 +25,12 @@ class RecetaListAdapter (onRecetaClickListener: OnRecetaClickListener) :
 
     class RecetaViewHolder(itemView: View, private val onRecetaClickListener: OnRecetaClickListener) :
         RecyclerView.ViewHolder(itemView) {
-        private val idReceta: TextView = itemView.findViewById(R.id.item_id)
+        //private val idReceta: TextView = itemView.findViewById(R.id.item_id)
         private val nombre: TextView = itemView.findViewById(R.id.item_name)
         private val updateButton: ImageButton = itemView.findViewById(R.id.update_button)
         private val deleteButton: ImageButton = itemView.findViewById(R.id.delete_button)
         fun bind(receta: RecetaEntity) {
-            idReceta.text = receta.idReceta.toString()
+            //idReceta.text = receta.idReceta.toString()
             nombre.text = receta.nombre
             updateButton.setOnClickListener {
                 onRecetaClickListener.onEditRecetaClicked(receta)

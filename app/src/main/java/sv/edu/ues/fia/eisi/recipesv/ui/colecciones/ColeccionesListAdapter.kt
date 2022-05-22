@@ -27,17 +27,17 @@ class ColeccionesListAdapter (onColeccionesClickListener: ColeccionesListAdapter
     class ColeccionesViewHolder(itemView: View, private val onColeccionesClickListener: OnColeccionesClickListener) :
         RecyclerView.ViewHolder(itemView) {
 
-        private val idColeccion: TextView = itemView.findViewById(R.id.item_id)
+        //private val idColeccion: TextView = itemView.findViewById(R.id.item_id)
         private val nombre: TextView = itemView.findViewById(R.id.item_name)
-        private val descripcion: TextView = itemView.findViewById(R.id.item_name2)
+        //private val descripcion: TextView = itemView.findViewById(R.id.item_name2)
         private val updateButton: ImageButton = itemView.findViewById(R.id.update_button)
         private val deleteButton: ImageButton = itemView.findViewById(R.id.delete_button)
 
         fun bind(coleccion: ColeccionesEntity) {
 
-            idColeccion.text = coleccion.idColeccion.toString()
+            //idColeccion.text = coleccion.idColeccion.toString()
             nombre.text = coleccion.nombre
-            descripcion.text = coleccion.descripcion
+            //descripcion.text = coleccion.descripcion
 
             updateButton.setOnClickListener {
                 onColeccionesClickListener.onEditColeccionesClicked(coleccion)
