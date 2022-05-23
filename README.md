@@ -78,7 +78,9 @@ Para que el proyecto pueda ejecutarse se usan las siguientes dependencias:
 
 ### Información adicional
 ---
-Esta es la sección que permite agregar más información de contexto al proyecto como alguna web de relevancia, proyectos similares o que hayan usado la misma tecnología.
+Esta es la primera versión de un proyecto de cátedra de la materia Programación para dispositivos móviles (PDM115) de la Universidad de El Salvador (UES), por lo que se encuentra en desarrollo y no es una versión final/definitiva.
+
+El propósito de su liberación es por fines educativos y no un uso generalizado en producción.
 
 ### Licencia 
 ---
