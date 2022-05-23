@@ -83,6 +83,17 @@ abstract class RegistroRecetaDB : RoomDatabase() {
             db.usuarioDao().insert(UsuarioEntity("karens.medrano@ues.edu.sv","123456","Karens Medrano","0"))
 
             db.coleccionesDao().insert(ColeccionEntity(0,"Mi Colección","", 0))
+
+            //Receta LLenado
+            db.recetaDao().insert(
+                RecetaEntity(1,"Guacamole",
+                    "Huevos triturados con aguacate",
+                    "1. Endurar los huevos\n2.Integrar el aguacate con los huevos\n3. Integrar el aguacate con los huevos",
+                    "0","1",10))
+
+            db.recetaDao().insert(RecetaEntity(2,"Espagueti","Pasta con salsa y queso",
+                "1.Poner a hervir la pasta\n2.Freir la pasta\n3. Integrar la pasta y la salsa\n4. Retirar de la estufa\n5. Aplicar queso",
+                "1","1",30))
         }
     }
     companion object {

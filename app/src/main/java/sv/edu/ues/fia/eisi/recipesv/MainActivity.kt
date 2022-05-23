@@ -1,6 +1,9 @@
 package sv.edu.ues.fia.eisi.recipesv
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Button
@@ -8,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -49,6 +53,16 @@ class MainActivity : AppCompatActivity() {
 
             val usuarioDao: UsuarioDao? = UsuarioDao()*/
 
+            if (user_name.isNullOrBlank()) {
+                Toast.makeText(this@MainActivity, "Usuario es requerido.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            if (password.isNullOrBlank()) {
+                Toast.makeText(this@MainActivity, "Contraseña es requerido.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             var usuario: UsuarioEntity?
 
             val application = this.application as RegistroRecetaApplication
@@ -63,9 +77,38 @@ class MainActivity : AppCompatActivity() {
             if (usuario != null) {
                 Toast.makeText(this@MainActivity, "Bienvenido " + usuario!!.nombre, Toast.LENGTH_LONG).show()
                 application.usuarioLogueado = usuario
-                val intent = Intent(this, RecipesActivity::class.java)
+                /*val intent = Intent(this, RecipesActivity::class.java)
                 // start your next activity
-                startActivity(intent)
+                startActivity(intent)*/
+
+                setContentView(R.layout.activity_main)
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    // Create the NotificationChannel
+                    val name = getString(R.string.channel_name)
+                    val descriptionText = getString(R.string.channel_description)
+                    val importance = NotificationManager.IMPORTANCE_DEFAULT
+                    val CHANNEL_ID = "notif_recipe_sv"
+                    val mChannel = NotificationChannel(CHANNEL_ID, name, importance)
+                    mChannel.description = descriptionText
+                    // Register the channel with the system; you can't change the importance
+                    // or other notification behaviors after this
+                    val notificationManager = ContextCompat.getSystemService(this, NotificationManager::class.java) as NotificationManager
+                    notificationManager.createNotificationChannel(mChannel)
+                }
+
+                val toolbar: Toolbar = findViewById(R.id.toolbar)
+                setSupportActionBar(toolbar)
+                val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+                val navView: NavigationView = findViewById(R.id.nav_view)
+                val navController = findNavController(R.id.nav_host_fragment_content_main)
+                // Passing each menu ID as a set of Ids because each
+                // menu should be considered as top level destinations.
+                appBarConfiguration = AppBarConfiguration(setOf(
+                    R.id.nav_inicio, R.id.nav_recetas, R.id.nav_usuarios, R.id.nav_colecciones, R.id.nav_ingredientes), drawerLayout)
+                setupActionBarWithNavController(navController, appBarConfiguration)
+                navView.setupWithNavController(navController)
+
             } else {
                 Toast.makeText(this@MainActivity, "Usuario o contraseña incorrectos.", Toast.LENGTH_LONG).show()
             }
@@ -86,7 +129,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
@@ -95,5 +138,5 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }*/
+    }
 }
