@@ -2,6 +2,8 @@ package sv.edu.ues.fia.eisi.recipesv.ui.inicio
 
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.speech.tts.TextToSpeech
+import java.util.*
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
@@ -19,17 +21,24 @@ import sv.edu.ues.fia.eisi.recipesv.db.FavoritoEntity
 import sv.edu.ues.fia.eisi.recipesv.db.HistoricoEntity
 
 
-class VerRecetaFragment : Fragment() {
+class VerRecetaFragment : Fragment(), TextToSpeech.OnInitListener {
     private lateinit var viewModel: InicioViewModel
+    private var tts: TextToSpeech? = null
+    private lateinit var textInput: EditText
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val fragment = inflater.inflate(R.layout.fragment_ver_receta, container, false)
+        textInput = fragment.findViewById(R.id.descripcion_paso)
         val application = activity?.application as RegistroRecetaApplication
+        tts = TextToSpeech(context, this)
         viewModel = ViewModelProvider(requireActivity(),
             InicioViewModelFactory(application.repository)
         ).get(InicioViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_ver_receta, container, false)
+        return fragment
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val application = activity?.application as RegistroRecetaApplication
@@ -119,6 +128,7 @@ class VerRecetaFragment : Fragment() {
 
             "Paso: $numPasoActual:".also { tituloPaso.text = it }
             descripcionPaso.setText(pasosDepurados?.get(indicePaso) ?: "Detalle del paso vacío.")
+            speakOut()
         }
 
         siguienteButton.setOnClickListener{
@@ -138,6 +148,7 @@ class VerRecetaFragment : Fragment() {
 
             "Paso: $numPasoActual:".also { tituloPaso.text = it }
             descripcionPaso.setText(pasosDepurados?.get(indicePaso) ?: "Detalle del paso vacío.")
+            speakOut()
         }
 
         iniciarButton.setOnClickListener{
@@ -217,4 +228,31 @@ class VerRecetaFragment : Fragment() {
             findNavController().navigate(R.id.action_nav_inicio_to_nav_ver_colecciones)
         }
     }
+
+    //// Implementacion LECTURA
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts!!.setLanguage(Locale("spa", "ESP"))
+            if (result == TextToSpeech.LANG_MISSING_DATA || result ==
+                TextToSpeech.LANG_NOT_SUPPORTED) {
+                Toast.makeText(context, "Lenguaje no soportado", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(context, "TTS no disponible", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun speakOut() {
+        val text = textInput.text.toString()
+        tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null,"")
+    }
+    override fun onDestroy() {
+        if (tts != null) {
+            tts!!.stop()
+            tts!!.shutdown()
+        }
+        super.onDestroy()
+    }
+
 }
