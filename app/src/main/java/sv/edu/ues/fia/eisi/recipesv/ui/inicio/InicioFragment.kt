@@ -1,5 +1,6 @@
 package sv.edu.ues.fia.eisi.recipesv.ui.inicio
 
+import android.animation.Animator
 import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,13 +33,17 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import kotlin.concurrent.thread
 
-class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener {
+class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener
+     {
     companion object {
         fun newInstance() = InicioFragment()
     }
     private lateinit var viewModel: InicioViewModel
-    override fun onCreateView(
+
+
+        override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -48,7 +54,10 @@ class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener {
         return inflater.inflate(R.layout.fragment_inicio, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
         val application = activity?.application as RegistroRecetaApplication
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = InicioListAdapter(this)
@@ -214,6 +223,8 @@ class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener {
         viewModel.recetaActual = receta
         findNavController().navigate(R.id.action_nav_inicio_to_nav_ver_receta)
     }
+
+
     /*override fun onEditInicioClicked(receta: RecetaEntity) {
         viewModel.recetaActual = receta
         findNavController().navigate(R.id.action_nav_receta_to_nav_guardar_receta)
