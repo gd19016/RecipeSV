@@ -1,6 +1,8 @@
 package sv.edu.ues.fia.eisi.recipesv.ui.receta
 
+import android.content.Intent
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +13,14 @@ import androidx.navigation.fragment.findNavController
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
+import java.util.*
 
 class GuardarRecetaFragment : Fragment() {
+
+    private val SPEECH_CAPTURE = 111
+    private lateinit var textView: TextView
+    private lateinit var talkButton: ImageButton
+
     private lateinit var viewModel: RecetaViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +44,8 @@ class GuardarRecetaFragment : Fragment() {
         val tipo: Spinner = view.findViewById(R.id.spinnerTipo)
         val tiempo: EditText = view.findViewById(R.id.tiempo_input)
         val guardarButton: Button = view.findViewById(R.id.guardar_receta)
+        textView = view.findViewById(R.id.descripcion_input)
+        talkButton = view.findViewById(R.id.talkBtn)
 
         val receta = viewModel.recetaActual
 
@@ -129,5 +139,28 @@ class GuardarRecetaFragment : Fragment() {
             }
             findNavController().navigateUp()
         }
+
+        /// Llamada a Dictado
+        talkButton.setOnClickListener {
+            dispatchSpeechIntent()
+        }
     }
+    // Implementacion de Dictdo
+
+    private fun dispatchSpeechIntent() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Hable ahora")
+        startActivityForResult(intent, SPEECH_CAPTURE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SPEECH_CAPTURE && data != null) {
+            val result = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            textView.text = result?.get(0) ?: ""
+        }
+    }
+
 }

@@ -18,6 +18,7 @@ import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.db.ColeccionRecetasEntity
 import sv.edu.ues.fia.eisi.recipesv.db.UsuarioEntity
+import sv.edu.ues.fia.eisi.recipesv.entity.Usuario
 import sv.edu.ues.fia.eisi.recipesv.ui.colecciones.ColeccionesFragment
 
 class ColeccionFragment : Fragment(), ColeccionListAdapter.OnColeccionClickListener {
@@ -73,7 +74,7 @@ class ColeccionFragment : Fragment(), ColeccionListAdapter.OnColeccionClickListe
             val idColeccion: Int? = elegido?.split("-", ignoreCase = true, limit = 0)?.first()
                 ?.toInt()
 
-            val usuarioLogueado: UsuarioEntity? = application.usuarioLogueado
+            val usuarioLogueado: Usuario? = application.usuarioLogueado
             val recetaActual = viewModel.recetaActual
 
             if (usuarioLogueado != null) {
