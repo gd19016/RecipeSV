@@ -20,19 +20,24 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.json.responseJson
+import com.github.kittinunf.result.Result
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.gson.Gson
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.PdfPTable
 import com.itextpdf.text.pdf.PdfWriter
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.db.UsuarioEntity
+import sv.edu.ues.fia.eisi.recipesv.entity.Usuario
 import java.io.File
 import java.io.FileOutputStream
 
 class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
 
-    var listaUsuarios: ArrayList<UsuarioEntity> = ArrayList()
+    var listaUsuarios: ArrayList<Usuario> = ArrayList()
 
     companion object {
         fun newInstance() = UsuarioFragment()
@@ -58,6 +63,43 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
         recyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.usuarios.observe(viewLifecycleOwner, Observer { usuarios -> usuarios?.let { adapter.submitList(it) }
         })
+
+        var msjError : String?=null
+        var usuarios : Usuario?=null
+        var gson : Gson = Gson()
+
+        Fuel.get(
+            "/usuarios/ws_get_all_usuarios.php"
+
+        ).responseJson { _, _, result ->
+            requireActivity().runOnUiThread {
+                when (result) {
+                    is Result.Failure -> {
+                        msjError = result.getException().toString();
+                        //Toast.makeText(this@MainActivity, result.getException().toString(), Toast.LENGTH_LONG).show()
+                    }
+                    is Result.Success -> {
+                        val data = result.get().array()
+                        if (data.length() > 0) {
+                            for (i in 0..data.length()-1) {
+                                var jsonObject: String? = data.getJSONObject(i).toString()
+
+                                if (jsonObject != null) {
+                                    usuarios = gson.fromJson(jsonObject, Usuario::class.java)
+                                    usuarios?.let { listaUsuarios.add(it) }
+                                }
+                            }
+                            //msjError = "Encontrado: " + data.getJSONObject(0).getString("nombre");
+                            //Toast.makeText(this@MainActivity, "Encontrado: " + data.getJSONObject(0).getString("EMAIL"), Toast.LENGTH_LONG).show()
+                        } else {
+                            msjError = "Usuario o contraseña incorrectos.";
+                            //Toast.makeText(this@MainActivity, "Usuario o contraseña incorrectos.", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+
+            }
+        }
 
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
