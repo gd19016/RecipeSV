@@ -21,6 +21,7 @@ import sv.edu.ues.fia.eisi.recipesv.db.ComentarioEntity
 import sv.edu.ues.fia.eisi.recipesv.db.HistoricoEntity
 import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
 import sv.edu.ues.fia.eisi.recipesv.db.UsuarioEntity
+import sv.edu.ues.fia.eisi.recipesv.entity.Usuario
 import sv.edu.ues.fia.eisi.recipesv.ui.receta.DificultadViewModel
 import sv.edu.ues.fia.eisi.recipesv.ui.receta.DificultadViewModelFactory
 import sv.edu.ues.fia.eisi.recipesv.ui.receta.TipoViewModel
@@ -68,7 +69,7 @@ class ComentariosFragment : Fragment(), ComentarioListAdapter.OnComentarioClickL
             if (nextCommentId == null)
                 nextCommentId = 1
 
-            val usuarioLogueado: UsuarioEntity? = application.usuarioLogueado
+            val usuarioLogueado: Usuario? = application.usuarioLogueado
 
             if (usuarioLogueado != null) {
                 viewModel.insert(ComentarioEntity(nextCommentId,usuarioLogueado.email, comentarioInput.text.toString()))

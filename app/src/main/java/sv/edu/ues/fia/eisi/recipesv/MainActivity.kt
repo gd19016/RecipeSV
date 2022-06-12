@@ -2,7 +2,6 @@ package sv.edu.ues.fia.eisi.recipesv
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -18,10 +17,16 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.core.FuelManager
+import com.github.kittinunf.fuel.json.responseJson
+import com.github.kittinunf.result.Result
 import com.google.android.material.navigation.NavigationView
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import org.json.JSONObject
 import sv.edu.ues.fia.eisi.recipesv.db.*
+import sv.edu.ues.fia.eisi.recipesv.entity.Usuario
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,12 +34,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FuelManager.instance.basePath = "https://gd19016pdm115.000webhostapp.com/"
+
         setContentView(R.layout.activity_login)
 
         var et_user_name = findViewById(R.id.et_user_name) as EditText
         var et_password = findViewById(R.id.et_password) as EditText
         var btn_reset = findViewById(R.id.btn_reset) as Button
         var btn_submit = findViewById(R.id.btn_submit) as Button
+        val gson = Gson()
 
         btn_reset.setOnClickListener {
             // clearing user_name and password edit text views on reset button click
@@ -63,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            var usuario: UsuarioEntity?
+            /*var usuario: UsuarioEntity?
 
             val application = this.application as RegistroRecetaApplication
 
@@ -111,6 +119,77 @@ class MainActivity : AppCompatActivity() {
 
             } else {
                 Toast.makeText(this@MainActivity, "Usuario o contraseña incorrectos.", Toast.LENGTH_LONG).show()
+            }*/
+
+            var msjError: String? = null;
+            var usuario: Usuario? = null
+
+            Fuel.get(
+                "/usuarios/login.php",
+                listOf("email" to user_name, "password" to password)
+            ).responseJson { _, _, result ->
+                this@MainActivity.runOnUiThread {
+                    when (result) {
+                        is Result.Failure -> {
+                            msjError = result.getException().toString();
+                            //Toast.makeText(this@MainActivity, result.getException().toString(), Toast.LENGTH_LONG).show()
+                        }
+                        is Result.Success -> {
+                            val data = result.get().array()
+                            if (data.length() > 0) {
+                                var jsonObject: String? = data.getJSONObject(0).toString()
+                                if (jsonObject != null) {
+                                    usuario = gson.fromJson(jsonObject, Usuario::class.java)
+                                }
+                                //msjError = "Encontrado: " + data.getJSONObject(0).getString("nombre");
+                                //Toast.makeText(this@MainActivity, "Encontrado: " + data.getJSONObject(0).getString("EMAIL"), Toast.LENGTH_LONG).show()
+                            } else {
+                                msjError = "Usuario o contraseña incorrectos.";
+                                //Toast.makeText(this@MainActivity, "Usuario o contraseña incorrectos.", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
+
+                    if (usuario != null) {
+                        val application = this.application as RegistroRecetaApplication
+                        Toast.makeText(this@MainActivity, "Bienvenido " + usuario!!.nombre, Toast.LENGTH_LONG).show()
+                        application.usuarioLogueado = usuario
+                        /*val intent = Intent(this, RecipesActivity::class.java)
+                        // start your next activity
+                        startActivity(intent)*/
+
+                        setContentView(R.layout.activity_main)
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            // Create the NotificationChannel
+                            val name = getString(R.string.channel_name)
+                            val descriptionText = getString(R.string.channel_description)
+                            val importance = NotificationManager.IMPORTANCE_DEFAULT
+                            val CHANNEL_ID = "notif_recipe_sv"
+                            val mChannel = NotificationChannel(CHANNEL_ID, name, importance)
+                            mChannel.description = descriptionText
+                            // Register the channel with the system; you can't change the importance
+                            // or other notification behaviors after this
+                            val notificationManager = ContextCompat.getSystemService(this, NotificationManager::class.java) as NotificationManager
+                            notificationManager.createNotificationChannel(mChannel)
+                        }
+
+                        val toolbar: Toolbar = findViewById(R.id.toolbar)
+                        setSupportActionBar(toolbar)
+                        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+                        val navView: NavigationView = findViewById(R.id.nav_view)
+                        val navController = findNavController(R.id.nav_host_fragment_content_main)
+                        // Passing each menu ID as a set of Ids because each
+                        // menu should be considered as top level destinations.
+                        appBarConfiguration = AppBarConfiguration(setOf(
+                            R.id.nav_inicio, R.id.nav_recetas, R.id.nav_usuarios, R.id.nav_colecciones, R.id.nav_ingredientes), drawerLayout)
+                        setupActionBarWithNavController(navController, appBarConfiguration)
+                        navView.setupWithNavController(navController)
+
+                    } else {
+                        Toast.makeText(this@MainActivity, "Usuario o contraseña incorrectos.", Toast.LENGTH_LONG).show()
+                    }
+                }
             }
 
 
