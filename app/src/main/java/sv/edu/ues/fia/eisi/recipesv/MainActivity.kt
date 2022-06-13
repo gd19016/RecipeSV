@@ -207,10 +207,10 @@ class MainActivity : AppCompatActivity() {
                         var imageView:ImageView=findViewById(R.id.imageGlide)
 
                         Glide.with(this)
-                            .load("https://cdn.pixabay.com/photo/2017/11/08/22/18/spaghetti-2931846_1280.jpg") // image url
+                            .load("https://cdn.pixabay.com/photo/2018/02/05/19/12/strawberry-3132973__340.jpg") // image url
 /*                            .placeholder(R.drawable.placeholder) // any placeholder to load at start
                             .error(R.drawable.imagenotfound)  // any image in case of error*/
-                            .override(200, 200) // resizing
+                            .override(277, 120) // resizing
                             .centerCrop()
                             .into(imageView);
 
