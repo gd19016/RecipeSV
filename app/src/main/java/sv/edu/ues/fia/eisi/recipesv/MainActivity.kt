@@ -2,11 +2,14 @@ package sv.edu.ues.fia.eisi.recipesv
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Intent
 import android.icu.number.NumberFormatter.with
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
+import android.widget.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -29,6 +32,10 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.json.responseJson
 import com.github.kittinunf.result.Result
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -46,6 +53,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     //lateinit var binding: ActivityMainBinding
 
+    private lateinit var googleSignInClient: GoogleSignInClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,12 +62,26 @@ class MainActivity : AppCompatActivity() {
 
         FuelManager.instance.basePath = "https://gd19016pdm115.000webhostapp.com/"
 
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
         setContentView(R.layout.activity_login)
 
         var et_user_name = findViewById(R.id.et_user_name) as EditText
         var et_password = findViewById(R.id.et_password) as EditText
         var btn_reset = findViewById(R.id.btn_reset) as Button
         var btn_submit = findViewById(R.id.btn_submit) as Button
+
+        val  button = findViewById(R.id.signInGoogleButton) as ImageButton
+        button.setOnClickListener {
+            signIn()
+        }
+
+
         val gson = Gson()
 
         btn_reset.setOnClickListener {
@@ -169,8 +192,7 @@ class MainActivity : AppCompatActivity() {
 
                     if (usuario != null) {
                         val application = this.application as RegistroRecetaApplication
-                        FancyToast.makeText(this@MainActivity, "Bienvenido " + usuario!!.nombre, FancyToast.LENGTH_LONG,
-                            FancyToast.SUCCESS,false).show()
+                        Toast.makeText(this@MainActivity, "Bienvenido " + usuario!!.nombre, Toast.LENGTH_LONG).show()
                         application.usuarioLogueado = usuario
                         /*val intent = Intent(this, RecipesActivity::class.java)
                         // start your next activity
@@ -252,6 +274,31 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 9001) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)!!
+
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    putExtra("full_name", account.displayName)
+                    putExtra("email", account.email)
+                    //putExtra("photoUrl", account.photoUrl.toString())
+                }
+                this.startActivity(intent);
+            } catch (e: ApiException) {
+                Log.w("Error", "Google sign in failed", e)
+            }
+        }
+    }
+
+    private fun signIn() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, 9001)
     }
 }
 

@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import sv.edu.ues.fia.eisi.recipesv.R
-import sv.edu.ues.fia.eisi.recipesv.db.UsuarioEntity
+import sv.edu.ues.fia.eisi.recipesv.entity.Usuario
 
 
 class UsuarioListAdapter (onUsuarioClickListener: OnUsuarioClickListener) :
-    ListAdapter<UsuarioEntity, UsuarioListAdapter.UsuarioViewHolder>(UsuarioComparator()) {
+    ListAdapter<Usuario, UsuarioListAdapter.UsuarioViewHolder>(UsuarioComparator()) {
     private val mOnUsuarioClickListener = onUsuarioClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsuarioViewHolder {
@@ -32,7 +32,7 @@ class UsuarioListAdapter (onUsuarioClickListener: OnUsuarioClickListener) :
         private val nombre: TextView = itemView.findViewById(R.id.item_name)
         private val updateButton: ImageButton = itemView.findViewById(R.id.update_button)
         private val deleteButton: ImageButton = itemView.findViewById(R.id.delete_button)
-        fun bind(usuario: UsuarioEntity) {
+        fun bind(usuario: Usuario) {
             //email.text = usuario.email.toString()
             nombre.text = usuario.nombre
             updateButton.setOnClickListener {
@@ -50,18 +50,18 @@ class UsuarioListAdapter (onUsuarioClickListener: OnUsuarioClickListener) :
             }
         }
     }
-    class UsuarioComparator : DiffUtil.ItemCallback<UsuarioEntity>() {
-        override fun areItemsTheSame(oldItem: UsuarioEntity, newItem: UsuarioEntity): Boolean {
+    class UsuarioComparator : DiffUtil.ItemCallback<Usuario>() {
+        override fun areItemsTheSame(oldItem: Usuario, newItem: Usuario): Boolean {
             return oldItem === newItem
         }
-        override fun areContentsTheSame(oldItem: UsuarioEntity, newItem: UsuarioEntity):
+        override fun areContentsTheSame(oldItem: Usuario, newItem: Usuario):
                 Boolean {
             return oldItem.email == newItem.email
         }
     }
     interface OnUsuarioClickListener {
-        fun onEditUsuarioClicked(usuario: UsuarioEntity)
-        fun onDeleteUsuarioClicked(usuario: UsuarioEntity)
+        fun onEditUsuarioClicked(usuario: Usuario)
+        fun onDeleteUsuarioClicked(usuario: Usuario)
 
         }
 }

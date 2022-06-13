@@ -8,13 +8,14 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import sv.edu.ues.fia.eisi.recipesv.db.*
+import sv.edu.ues.fia.eisi.recipesv.entity.RecetaEntidad
 import sv.edu.ues.fia.eisi.recipesv.ui.colecciones.ColeccionesFragment
 
 class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewModel() {
-    val recetas: LiveData<List<RecetaEntity>> = repository.recetas
+    //val recetas: LiveData<List<RecetaEntidad>> = repository.recetas
     val comentarios: LiveData<List<ComentarioEntity>> = repository.comentarios
     val colecciones: LiveData<List<ColeccionRecetasEntity>> = repository.coleccionReceta
-    var recetaActual: RecetaEntity? = null
+    var recetaActual: RecetaEntidad? = null
     val favoritos: LiveData<List<FavoritoEntity>> = repository.favoritos
     var favoritoActual: FavoritoEntity? = null
     var favoritoConsultado: FavoritoEntity? = null
@@ -72,9 +73,10 @@ class InicioViewModel(private val repository: RegistroRecetaRepository) : ViewMo
     fun insert(historicoEntity: HistoricoEntity) = viewModelScope.launch {
         repository.insert(historicoEntity)
     }
-    suspend fun getAll(pEmail: String?, pHistorica: String?, pFavorita: String?): List<RecetaEntity> {
-        return repository.getAll(pEmail, pHistorica, pFavorita)
-    }
+    /*suspend fun getAll(pEmail: String?, pHistorica: String?, pFavorita: String?): List<RecetaEntidad> {
+        //return repository.getAll(pEmail, pHistorica, pFavorita)
+        return null
+    }*/
 }
 
 class InicioViewModelFactory(private val repository: RegistroRecetaRepository) :
