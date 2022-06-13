@@ -24,6 +24,7 @@ import com.github.kittinunf.result.Result
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.shashank.sony.fancytoastlib.FancyToast
 import org.json.JSONObject
 import sv.edu.ues.fia.eisi.recipesv.db.*
 import sv.edu.ues.fia.eisi.recipesv.entity.Usuario
@@ -152,7 +153,8 @@ class MainActivity : AppCompatActivity() {
 
                     if (usuario != null) {
                         val application = this.application as RegistroRecetaApplication
-                        Toast.makeText(this@MainActivity, "Bienvenido " + usuario!!.nombre, Toast.LENGTH_LONG).show()
+                        FancyToast.makeText(this@MainActivity, "Bienvenido " + usuario!!.nombre, FancyToast.LENGTH_LONG,
+                            FancyToast.SUCCESS,false).show()
                         application.usuarioLogueado = usuario
                         /*val intent = Intent(this, RecipesActivity::class.java)
                         // start your next activity
