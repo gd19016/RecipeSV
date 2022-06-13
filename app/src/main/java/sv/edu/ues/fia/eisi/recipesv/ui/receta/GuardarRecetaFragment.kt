@@ -10,9 +10,13 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.json.responseJson
+import com.github.kittinunf.result.Result
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
+import java.lang.Exception
 import java.util.*
 
 class GuardarRecetaFragment : Fragment() {
@@ -113,7 +117,45 @@ class GuardarRecetaFragment : Fragment() {
             }
 
             if (receta != null) {
-                viewModel.update(
+                Fuel.get(
+                    "/recetas/ws_update_receta.php",
+                    listOf(
+                        "idReceta" to idReceta.text,
+                        "nombre" to nombre.text,
+                        "descripcion" to descripcion.text,
+                        "pasos" to pasos.text,
+                        "dificultad" to dificultad.selectedItem,
+                        "tipo" to tipo.selectedItem,
+                        "tiempo" to tiempo.text
+                    )
+                ).responseJson { _, _, result ->
+                    requireActivity().runOnUiThread {
+                        when (result) {
+                            is Result.Failure -> {
+                                Toast.makeText(context, result.getException().toString(),
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                            is Result.Success -> {
+                                try {
+                                    val data = result.get().obj()
+                                    if (data.has("resultado") && data.getString("resultado") == "1") {
+                                        Toast.makeText(context, "Registro actualizado",
+                                            Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        Toast.makeText(context, "Registro no se pudo actualizar",
+                                            Toast.LENGTH_SHORT).show()
+                                    }
+                                    findNavController().navigateUp()
+                                } catch (e: Exception) {
+                                    Toast.makeText(context, result.get().content,
+                                        Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    }
+                }
+
+                /*viewModel.update(
                     RecetaEntity(
                         receta.idReceta,
                         nombre.text.toString(),
@@ -123,9 +165,47 @@ class GuardarRecetaFragment : Fragment() {
                         tipo.selectedItem.toString(),
                         tiempo.text.toString().toInt()
                     )
-                )
+                )*/
             } else {
-                viewModel.insert(
+                Fuel.get(
+                    "/recetas/ws_insertar_receta.php",
+                    listOf(
+                        "idReceta" to idReceta.text,
+                        "nombre" to nombre.text,
+                        "descripcion" to descripcion.text,
+                        "pasos" to pasos.text,
+                        "dificultad" to dificultad.selectedItem,
+                        "tipo" to tipo.selectedItem,
+                        "tiempo" to tiempo.text
+                    )
+                ).responseJson { _, _, result ->
+                    requireActivity().runOnUiThread {
+                        when (result) {
+                            is Result.Failure -> {
+                                Toast.makeText(context, result.getException().toString(),
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                            is Result.Success -> {
+                                try {
+                                    val data = result.get().obj()
+                                    if (data.has("resultado") && data.getString("resultado") == "1") {
+                                        Toast.makeText(context, "Registro insertado",
+                                            Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        Toast.makeText(context, "Registro no se pudo insertar",
+                                            Toast.LENGTH_SHORT).show()
+                                    }
+                                    findNavController().navigateUp()
+                                } catch (e: Exception) {
+                                    Toast.makeText(context, result.get().content,
+                                        Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    }
+                }
+
+                /*viewModel.insert(
                     RecetaEntity(
                         idReceta.text.toString().toInt(),
                         nombre.text.toString(),
@@ -135,9 +215,8 @@ class GuardarRecetaFragment : Fragment() {
                         tipo.selectedItem.toString(),
                         tiempo.text.toString().toInt()
                     )
-                )
+                )*/
             }
-            findNavController().navigateUp()
         }
 
         /// Llamada a Dictado

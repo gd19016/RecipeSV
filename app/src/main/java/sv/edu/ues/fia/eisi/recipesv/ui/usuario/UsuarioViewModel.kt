@@ -8,23 +8,23 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import sv.edu.ues.fia.eisi.recipesv.db.RegistroRecetaRepository
-import sv.edu.ues.fia.eisi.recipesv.db.UsuarioEntity
+import sv.edu.ues.fia.eisi.recipesv.entity.Usuario
 
 class UsuarioViewModel(private val repository: RegistroRecetaRepository) : ViewModel() {
 
-    val usuarios: LiveData<List<UsuarioEntity>> = repository.usuarios
-    var usuarioActual: UsuarioEntity? = null
+    //val usuarios: LiveData<List<Usuario>> = repository.usuarios
+    var usuarioActual: Usuario? = null
 
-    fun insert(usuario: UsuarioEntity) = viewModelScope.launch {
-        repository.insert(usuario)
+    fun insert(usuario: Usuario) = viewModelScope.launch {
+        //repository.insert(usuario)
     }
 
-    fun update(usuario: UsuarioEntity) = viewModelScope.launch {
-        repository.update(usuario)
+    fun update(usuario: Usuario) = viewModelScope.launch {
+        //repository.update(usuario)
     }
 
-    fun delete(usuario: UsuarioEntity) = viewModelScope.launch {
-        repository.delete(usuario)
+    fun delete(usuario: Usuario) = viewModelScope.launch {
+        //repository.delete(usuario)
     }
 
     fun getRolForSpinner(): Array<String>? {

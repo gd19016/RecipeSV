@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import sv.edu.ues.fia.eisi.recipesv.R
-import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
+import sv.edu.ues.fia.eisi.recipesv.entity.RecetaEntidad
 
 class RecetaListAdapter (onRecetaClickListener: OnRecetaClickListener) :
-    ListAdapter<RecetaEntity, RecetaListAdapter.RecetaViewHolder>(RecetaComparator()) {
+    ListAdapter<RecetaEntidad, RecetaListAdapter.RecetaViewHolder>(RecetaComparator()) {
     private val mOnRecetaClickListener = onRecetaClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecetaViewHolder {
@@ -29,7 +29,7 @@ class RecetaListAdapter (onRecetaClickListener: OnRecetaClickListener) :
         private val nombre: TextView = itemView.findViewById(R.id.item_name)
         private val updateButton: ImageButton = itemView.findViewById(R.id.update_button)
         private val deleteButton: ImageButton = itemView.findViewById(R.id.delete_button)
-        fun bind(receta: RecetaEntity) {
+        fun bind(receta: RecetaEntidad) {
             //idReceta.text = receta.idReceta.toString()
             nombre.text = receta.nombre
             updateButton.setOnClickListener {
@@ -48,17 +48,17 @@ class RecetaListAdapter (onRecetaClickListener: OnRecetaClickListener) :
             }
         }
     }
-    class RecetaComparator : DiffUtil.ItemCallback<RecetaEntity>() {
-        override fun areItemsTheSame(oldItem: RecetaEntity, newItem: RecetaEntity): Boolean {
+    class RecetaComparator : DiffUtil.ItemCallback<RecetaEntidad>() {
+        override fun areItemsTheSame(oldItem: RecetaEntidad, newItem: RecetaEntidad): Boolean {
             return oldItem === newItem
         }
-        override fun areContentsTheSame(oldItem: RecetaEntity, newItem: RecetaEntity):
+        override fun areContentsTheSame(oldItem: RecetaEntidad, newItem: RecetaEntidad):
                 Boolean {
             return oldItem.idReceta == newItem.idReceta
         }
     }
     interface OnRecetaClickListener {
-        fun onEditRecetaClicked(receta: RecetaEntity)
-        fun onDeleteRecetaClicked(receta: RecetaEntity)
+        fun onEditRecetaClicked(receta: RecetaEntidad)
+        fun onDeleteRecetaClicked(receta: RecetaEntidad)
     }
 }

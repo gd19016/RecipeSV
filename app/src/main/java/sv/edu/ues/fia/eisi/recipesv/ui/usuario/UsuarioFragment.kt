@@ -30,7 +30,6 @@ import com.itextpdf.text.pdf.PdfPTable
 import com.itextpdf.text.pdf.PdfWriter
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
-import sv.edu.ues.fia.eisi.recipesv.db.UsuarioEntity
 import sv.edu.ues.fia.eisi.recipesv.entity.Usuario
 import java.io.File
 import java.io.FileOutputStream
@@ -61,10 +60,10 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
         val adapter = UsuarioListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.usuarios.observe(viewLifecycleOwner, Observer { usuarios -> usuarios?.let { adapter.submitList(it) }
-        })
+        /*viewModel.usuarios.observe(viewLifecycleOwner, Observer { usuarios -> usuarios?.let { adapter.submitList(it) }
+        })*/
 
-        var msjError : String?=null
+        lateinit var msjError : String
         var usuarios : Usuario?=null
         var gson : Gson = Gson()
 
@@ -81,6 +80,9 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
                     is Result.Success -> {
                         val data = result.get().array()
                         if (data.length() > 0) {
+                            if (!listaUsuarios.isEmpty())
+                                listaUsuarios.clear()
+
                             for (i in 0..data.length()-1) {
                                 var jsonObject: String? = data.getJSONObject(i).toString()
 
@@ -89,6 +91,10 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
                                     usuarios?.let { listaUsuarios.add(it) }
                                 }
                             }
+                            if (!listaUsuarios.isEmpty()) {
+                                adapter.submitList(listaUsuarios.toList())
+                            }
+
                             //msjError = "Encontrado: " + data.getJSONObject(0).getString("nombre");
                             //Toast.makeText(this@MainActivity, "Encontrado: " + data.getJSONObject(0).getString("EMAIL"), Toast.LENGTH_LONG).show()
                         } else {
@@ -109,7 +115,7 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
 
         //iTextPDF
         if(checkPermission()) {
-            Toast.makeText(context, "Permiso Aceptado", Toast.LENGTH_LONG).show();
+            //Toast.makeText(context, "Permiso Aceptado", Toast.LENGTH_LONG).show();
         } else {
             requestPermissions();
         }
@@ -120,14 +126,16 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
             crearPdf()
         }
 
+
+
     }
 
-    override fun onEditUsuarioClicked(usuario: UsuarioEntity) {
+    override fun onEditUsuarioClicked(usuario: Usuario) {
         viewModel.usuarioActual = usuario
         findNavController().navigate(R.id.action_nav_usuario_to_nav_guardar_usuario)
     }
 
-    override fun onDeleteUsuarioClicked(usuario: UsuarioEntity) {
+    override fun onDeleteUsuarioClicked(usuario: Usuario) {
         val builder = AlertDialog.Builder(activity)
         builder.setMessage("Estas seguro que deseas borrar el usuario con correo: ${usuario.email}?")
             .setCancelable(false)
@@ -141,7 +149,7 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
 
     //iTextPDF
     fun crearPdf() {
-        var path = Environment.getExternalStorageDirectory().absolutePath+"/EjemploITextPDF"
+        var path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath+"/EjemploITextPDF"
 
         val dir = File(path)
         if (!dir.exists())
@@ -208,7 +216,7 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
         grantResults: IntArray
     ) {
         if (requestCode == 200) {
-            if (grantResults.size > 0) {
+            if (grantResults.isNotEmpty()) {
                 val writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED
                 val readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED
                 if (writeStorage && readStorage) {

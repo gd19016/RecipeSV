@@ -1,21 +1,20 @@
 package sv.edu.ues.fia.eisi.recipesv.ui.inicio
 
-import android.animation.Animator
-import android.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Environment
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.json.responseJson
+import com.github.kittinunf.result.Result
+import com.google.gson.Gson
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.apache.poi.ss.usermodel.Row
@@ -23,8 +22,7 @@ import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
-import sv.edu.ues.fia.eisi.recipesv.db.HistoricoEntity
-import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
+import sv.edu.ues.fia.eisi.recipesv.entity.RecetaEntidad
 import sv.edu.ues.fia.eisi.recipesv.ui.receta.DificultadViewModel
 import sv.edu.ues.fia.eisi.recipesv.ui.receta.DificultadViewModelFactory
 import sv.edu.ues.fia.eisi.recipesv.ui.receta.TipoViewModel
@@ -33,7 +31,6 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
-import kotlin.concurrent.thread
 
 class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener
      {
@@ -41,7 +38,7 @@ class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener
         fun newInstance() = InicioFragment()
     }
     private lateinit var viewModel: InicioViewModel
-
+    var listaRecetas: ArrayList<RecetaEntidad> = ArrayList()
 
         override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,9 +60,9 @@ class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener
         val adapter = InicioListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.recetas.observe(viewLifecycleOwner, Observer { recetas ->
+        /*viewModel.recetas.observe(viewLifecycleOwner, Observer { recetas ->
             recetas?.let { adapter.submitList(it) }
-        })
+        })*/
 
         val chkFavorita: CheckBox = view.findViewById(R.id.chk_favorita)
         val chkHistorica: CheckBox = view.findViewById(R.id.chk_vista)
@@ -123,9 +120,9 @@ class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener
         val buscarButton: Button = view.findViewById(R.id.btn_buscar)
 
         buscarButton.setOnClickListener {
-            val buscarFavoritas: String = (chkFavorita.isChecked == true).toString()
+            /*val buscarFavoritas: String = (chkFavorita.isChecked == true).toString()
             val buscarHistorica: String = (chkHistorica.isChecked == true).toString()
-            var resultados: List<RecetaEntity>?
+            var resultados: List<RecetaEntidad>?
             runBlocking {
                 val resultado = async { viewModel.getAll(application.usuarioLogueado?.email,buscarFavoritas,buscarHistorica) }
                 runBlocking{
@@ -133,7 +130,7 @@ class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener
                 }
             }
 
-            adapter.submitList(resultados)
+            adapter.submitList(resultados)*/
         }
 
         val excelButton: ImageButton = view.findViewById(R.id.btn_excel)
@@ -169,6 +166,49 @@ class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener
             }
         }
 
+        var recetas : RecetaEntidad?=null
+        var gson : Gson = Gson()
+
+        Fuel.get(
+            "/recetas/ws_query_all_receta.php"
+
+        ).responseJson { _, _, result ->
+            requireActivity().runOnUiThread {
+                when (result) {
+                    is Result.Failure -> {
+                        //msjError = result.getException().toString();
+                        //Toast.makeText(this@MainActivity, result.getException().toString(), Toast.LENGTH_LONG).show()
+                    }
+                    is Result.Success -> {
+                        val data = result.get().array()
+                        if (data.length() > 0) {
+                            if (!listaRecetas.isEmpty())
+                                listaRecetas.clear()
+
+                            for (i in 0..data.length()-1) {
+                                var jsonObject: String? = data.getJSONObject(i).toString()
+
+                                if (jsonObject != null) {
+                                    recetas = gson.fromJson(jsonObject, RecetaEntidad::class.java)
+                                    recetas?.let { listaRecetas.add(it) }
+                                }
+                            }
+                            if (!listaRecetas.isEmpty()) {
+                                adapter.submitList(listaRecetas.toList())
+                            }
+
+                            //msjError = "Encontrado: " + data.getJSONObject(0).getString("nombre");
+                            //Toast.makeText(this@MainActivity, "Encontrado: " + data.getJSONObject(0).getString("EMAIL"), Toast.LENGTH_LONG).show()
+                        } else {
+                            //msjError = "Usuario o contraseña incorrectos.";
+                            //Toast.makeText(this@MainActivity, "Usuario o contraseña incorrectos.", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+
+            }
+        }
+
         /*val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
             viewModel.recetaActual = null
@@ -187,17 +227,27 @@ class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener
     private fun addData(sheet: Sheet) {
 
         //Creating rows at passed in indices
-        val row1 = sheet.createRow(0)
+        /*val row1 = sheet.createRow(0)
         val row2 = sheet.createRow(1)
         val row3 = sheet.createRow(2)
         val row4 = sheet.createRow(3)
         val row5 = sheet.createRow(4)
         val row6 = sheet.createRow(5)
-        val row7 = sheet.createRow(6)
+        val row7 = sheet.createRow(6)*/
 
+        if (listaRecetas.isNotEmpty()) {
+            for (i in 0 until listaRecetas.size - 1) {
+                val row = sheet.createRow(i)
+                createCell(row, 0, listaRecetas[i].idReceta.toString())
+                createCell(row, 1, listaRecetas[i].nombre)
+            }
+            Toast.makeText(requireContext(), "Reporte ha sido generado.", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Sin datos para el reporte.", Toast.LENGTH_SHORT).show()
+        }
 
         //Adding data to each  cell
-        createCell(row1, 0, "Mike")
+        /*createCell(row1, 0, "Mike")
         createCell(row1, 1, "470")
 
         createCell(row2, 0, "Montessori")
@@ -216,20 +266,20 @@ class InicioFragment : Fragment(), InicioListAdapter.OnInicioClickListener
         createCell(row6, 1, "420")
 
         createCell(row7, 0, "Gibbs")
-        createCell(row7, 1, "510")
+        createCell(row7, 1, "510")*/
     }
 
-    override fun onPreviewInicioClicked(receta: RecetaEntity) {
+    override fun onPreviewInicioClicked(receta: RecetaEntidad) {
         viewModel.recetaActual = receta
         findNavController().navigate(R.id.action_nav_inicio_to_nav_ver_receta)
     }
 
 
-    /*override fun onEditInicioClicked(receta: RecetaEntity) {
+    /*override fun onEditInicioClicked(receta: RecetaEntidad) {
         viewModel.recetaActual = receta
         findNavController().navigate(R.id.action_nav_receta_to_nav_guardar_receta)
     }
-    override fun onDeleteInicioClicked(receta: RecetaEntity) {
+    override fun onDeleteInicioClicked(receta: RecetaEntidad) {
         val builder = AlertDialog.Builder(activity)
         builder.setMessage("Estas seguro que deseas borrar la receta con identificador: ${receta.idReceta}?")
             .setCancelable(false)

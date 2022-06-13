@@ -1,6 +1,5 @@
 package sv.edu.ues.fia.eisi.recipesv.ui.inicio
 
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import sv.edu.ues.fia.eisi.recipesv.R
-import sv.edu.ues.fia.eisi.recipesv.db.RecetaEntity
+import sv.edu.ues.fia.eisi.recipesv.entity.RecetaEntidad
 
 class InicioListAdapter (onInicioClickListener: InicioListAdapter.OnInicioClickListener) :
-    ListAdapter<RecetaEntity, InicioListAdapter.InicioViewHolder>(InicioComparator()) {
+    ListAdapter<RecetaEntidad, InicioListAdapter.InicioViewHolder>(InicioComparator()) {
         private val mOnInicioClickListener = onInicioClickListener
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InicioViewHolder {
@@ -31,7 +30,7 @@ class InicioListAdapter (onInicioClickListener: InicioListAdapter.OnInicioClickL
             /*private val updateButton: ImageButton = itemView.findViewById(R.id.update_button)
             private val deleteButton: ImageButton = itemView.findViewById(R.id.delete_button)*/
             private val previewButton: ImageButton = itemView.findViewById(R.id.preview_button)
-            fun bind(receta: RecetaEntity) {
+            fun bind(receta: RecetaEntidad) {
                 //idReceta.text = receta.idReceta.toString()
                 nombre.text = receta.nombre
                 /*updateButton.setOnClickListener {
@@ -53,18 +52,18 @@ class InicioListAdapter (onInicioClickListener: InicioListAdapter.OnInicioClickL
                 }
             }
         }
-        class InicioComparator : DiffUtil.ItemCallback<RecetaEntity>() {
-            override fun areItemsTheSame(oldItem: RecetaEntity, newItem: RecetaEntity): Boolean {
+        class InicioComparator : DiffUtil.ItemCallback<RecetaEntidad>() {
+            override fun areItemsTheSame(oldItem: RecetaEntidad, newItem: RecetaEntidad): Boolean {
                 return oldItem === newItem
             }
-            override fun areContentsTheSame(oldItem: RecetaEntity, newItem: RecetaEntity):
+            override fun areContentsTheSame(oldItem: RecetaEntidad, newItem: RecetaEntidad):
                     Boolean {
                 return oldItem.idReceta == newItem.idReceta
             }
         }
         interface OnInicioClickListener {
-            /*fun onEditInicioClicked(receta: RecetaEntity)
-            fun onDeleteInicioClicked(receta: RecetaEntity)*/
-            fun onPreviewInicioClicked(receta: RecetaEntity)
+            /*fun onEditInicioClicked(receta: RecetaEntidad)
+            fun onDeleteInicioClicked(receta: RecetaEntidad)*/
+            fun onPreviewInicioClicked(receta: RecetaEntidad)
         }
 }

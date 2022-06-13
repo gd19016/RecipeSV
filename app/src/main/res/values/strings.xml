@@ -85,6 +85,7 @@
     <string name="comentarios_receta">Comentarios de Receta</string>
     <string name="listado_coleccion_label">Listado de colecciones que incluyen la receta</string>
     <string name="colecciones_receta">Colecciones de Receta</string>
+    <string name="default_web_client_id">430794782737-eg0hpcp9l9iepfkkum7gk8u9mp40h158.apps.googleusercontent.com</string>
 
 
 </resources>
