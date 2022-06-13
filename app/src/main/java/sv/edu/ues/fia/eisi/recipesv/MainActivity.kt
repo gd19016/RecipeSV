@@ -3,11 +3,17 @@ package sv.edu.ues.fia.eisi.recipesv
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Intent
+import android.icu.number.NumberFormatter.with
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -17,6 +23,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.with
+import com.bumptech.glide.GlideContext
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.with
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.with
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.json.responseJson
@@ -28,18 +39,27 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.shashank.sony.fancytoastlib.FancyToast
 import org.json.JSONObject
+import sv.edu.ues.fia.eisi.recipesv.databinding.ActivityMainBinding
 import sv.edu.ues.fia.eisi.recipesv.db.*
 import sv.edu.ues.fia.eisi.recipesv.entity.Usuario
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    //lateinit var binding: ActivityMainBinding
 
     private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
         FuelManager.instance.basePath = "https://gd19016pdm115.000webhostapp.com/"
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -206,6 +226,18 @@ class MainActivity : AppCompatActivity() {
                         setupActionBarWithNavController(navController, appBarConfiguration)
                         navView.setupWithNavController(navController)
 
+                        //Glide
+
+                        var imageView:ImageView=findViewById(R.id.imageGlide)
+
+                        Glide.with(this)
+                            .load("https://cdn.pixabay.com/photo/2018/02/05/19/12/strawberry-3132973__340.jpg") // image url
+/*                            .placeholder(R.drawable.placeholder) // any placeholder to load at start
+                            .error(R.drawable.imagenotfound)  // any image in case of error*/
+                            .override(277, 120) // resizing
+                            .centerCrop()
+                            .into(imageView);
+
                     } else {
                         Toast.makeText(this@MainActivity, "Usuario o contraseña incorrectos.", Toast.LENGTH_LONG).show()
                     }
@@ -226,7 +258,12 @@ class MainActivity : AppCompatActivity() {
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)*/
         }
+
+
+
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -264,3 +301,5 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(signInIntent, 9001)
     }
 }
+
+
