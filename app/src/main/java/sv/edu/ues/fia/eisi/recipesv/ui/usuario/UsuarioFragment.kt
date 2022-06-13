@@ -28,6 +28,7 @@ import com.google.gson.Gson
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.PdfPTable
 import com.itextpdf.text.pdf.PdfWriter
+import com.shashank.sony.fancytoastlib.FancyToast
 import sv.edu.ues.fia.eisi.recipesv.R
 import sv.edu.ues.fia.eisi.recipesv.RegistroRecetaApplication
 import sv.edu.ues.fia.eisi.recipesv.db.UsuarioEntity
@@ -109,7 +110,7 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
 
         //iTextPDF
         if(checkPermission()) {
-            Toast.makeText(context, "Permiso Aceptado", Toast.LENGTH_LONG).show();
+            FancyToast.makeText(context, "Permiso Aceptado", FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
         } else {
             requestPermissions();
         }
@@ -118,6 +119,14 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
         btnCrearPdf.setOnClickListener {
             viewModel.usuarioActual = null
             crearPdf()
+            Toast.makeText(context, "Archivo PDF creado!", Toast.LENGTH_LONG).show()
+        }
+
+        //PDF_Viewer
+        val btnVerPdf: Button = view.findViewById(R.id.btnVerPdf)
+        btnVerPdf.setOnClickListener {
+            viewModel.usuarioActual = null
+            findNavController().navigate(R.id.action_nav_usuario_to_nav_pdfViewer)
         }
 
     }
@@ -141,7 +150,7 @@ class UsuarioFragment : Fragment(), UsuarioListAdapter.OnUsuarioClickListener {
 
     //iTextPDF
     fun crearPdf() {
-        var path = Environment.getExternalStorageDirectory().absolutePath+"/EjemploITextPDF"
+        var path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath+"/EjemploITextPDF"
 
         val dir = File(path)
         if (!dir.exists())

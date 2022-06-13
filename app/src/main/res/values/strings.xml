@@ -86,5 +86,7 @@
     <string name="listado_coleccion_label">Listado de colecciones que incluyen la receta</string>
     <string name="colecciones_receta">Colecciones de Receta</string>
 
+    <string name="Ver_PDF">Ver PDF</string>
+
 
 </resources>

@@ -80,12 +80,20 @@
         <action
             android:id="@+id/action_nav_usuario_to_nav_guardar_usuario"
             app:destination="@id/nav_guardar_usuario" />
+        <action
+            android:id="@+id/action_nav_usuario_to_nav_pdfViewer"
+            app:destination="@id/nav_pdfViewer" />
     </fragment>
     <fragment
         android:id="@+id/nav_guardar_usuario"
         android:name="sv.edu.ues.fia.eisi.recipesv.ui.usuario.GuardarUsuarioFragment"
         android:label="Gestionar Usuarios"
         tools:layout="@layout/fragment_guardar_usuario" />
+    <fragment
+        android:id="@+id/nav_pdfViewer"
+        android:name="sv.edu.ues.fia.eisi.recipesv.ui.PDFViewerFragment"
+        android:label="Visor PDF"
+        tools:layout="@layout/fragment_p_d_f_viewer" />
 
     <fragment
         android:id="@+id/nav_ingredientes"
